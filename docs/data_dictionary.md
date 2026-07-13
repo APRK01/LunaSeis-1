@@ -49,3 +49,11 @@ Contains authoritative code/grade decoding, full and conservative counts, year/s
 - `nonshallow_batch_2_download_receipt.json`: exact-size/MD5 verification receipt for all 3,270 Batch 2 products.
 - `nonshallow_batch_2_window_quality.csv`: Batch 2 positive-channel ATT/gap audit with descriptive raw metrics.
 - `nonshallow_batch_2_request_quality.csv`: Batch 2 channel-integrity aggregation per physical event/station request.
+- `nonshallow_batch_{3,4}_download_receipt.json`: exact-size/MD5 receipts for the remaining planned products.
+- `nonshallow_batch_{3,4}_window_quality.csv`: ATT-aware positive-channel audits for the remaining batches.
+- `nonshallow_batch_{3,4}_request_quality.csv`: event/station channel-integrity aggregations.
+- `positive_split_assignments.csv`: fold-specific leakage-safe usable positive event/station assignments.
+- `background_window_candidates.csv`: deterministic fold-specific catalog-negative candidates with exclusion-buffer and bias provenance.
+- `preprocessing_positive_windows.csv`: primary MH v0.1 positive windows mapped onto nominal MiniSEED time.
+- `results/predictions/pilot_dataset_audit.json`: manifest counts, hashes, fold/role counts, and evaluation-group leakage audit.
+- `results/predictions/pilot_baselines_v0.1.json`: validation-thresholded classical diagnostic results; explicitly not paper results.

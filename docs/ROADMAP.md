@@ -29,7 +29,10 @@ Phase 1 initial scoping completed on 2026-07-13:
 - audited nonshallow PDS availability and produced an exact 15,106-product, 7.11 GiB checksum-backed plan in four bounded batches; 1,159 of 1,240 candidates retain an archive-backed positive station request.
 - downloaded and MD5-verified all 5,398 Batch 1 products and audited 658 events: 648 usable, two questionable, and eight rejected for raw gap/ATT integrity.
 - downloaded and MD5-verified all 3,270 Batch 2 products and audited 599 events: 586 usable, three questionable, and ten rejected within the batch; cross-station aggregation now leaves nine rejected-only events.
+- completed Batches 3 and 4, closing all 15,106 planned products and all 1,159 archive-backed events; final aggregation is 1,146 usable, three questionable, ten rejected-only, and 81 archive-unavailable nonshallow candidates.
+- froze pilot ATT mapping, integrity sensitivities, leakage-safe LOSO assignments, primary MH preprocessing, and catalog-negative candidate construction.
+- ran three classical pilot baselines; high false-alarm rates and an anomalous S12 handcrafted result triggered a neural-training gate pending an independent continuous background frame and shortcut audit.
 
-Phase 1 remains active for nonshallow Batches 3–4 download/window QA, background manifest construction, exhaustive literature chaining, ATT/catalog timing reconciliation, and final protocol/split freeze.
+Phase 1 remains active for an independent continuous-background frame, shortcut audit, exhaustive literature chaining, final continuous-scanning rules, and release/licensing clarification. Neural training remains blocked by Decision 0016.
 
 Later phases: literature/data audit; reproducible preprocessing; baselines; compact neural models; generalization/calibration; continuous scanning/retention simulation; reproduction audit; paper; public release.

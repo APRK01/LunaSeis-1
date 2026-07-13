@@ -1,0 +1,31 @@
+{
+  "batch_count": 4,
+  "channel_window_count": 6236,
+  "unique_event_station_requests": 2476,
+  "unique_events": 1159,
+  "timing_mapping_policy": "Map catalog Earth-reception reference to the nominal MiniSEED sample time at the nearest valid ATT value; preserve reference, ATT, nominal, and offsets separately.",
+  "threshold_sensitivity_event_counts": {
+    "strict": {
+      "usable_integrity": 1107,
+      "questionable_integrity": 41,
+      "reject_integrity": 11
+    },
+    "primary_v0_1": {
+      "usable_integrity": 1146,
+      "reject_integrity": 10,
+      "questionable_integrity": 3
+    },
+    "lenient": {
+      "usable_integrity": 1146,
+      "reject_integrity": 9,
+      "questionable_integrity": 4
+    }
+  },
+  "primary_thresholds": {
+    "usable_max_gap_fraction": 0.2,
+    "reject_above_gap_fraction": 0.5,
+    "usable_max_abs_att_offset_seconds": 1.0,
+    "reject_above_abs_att_offset_seconds": 10.0
+  },
+  "scientific_limit": "This freezes a reproducible engineering mapping, not the unresolved physical time standard or phase-pick meaning of catalog start times."
+}

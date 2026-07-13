@@ -22,6 +22,8 @@ evaluation:
   aggregate_only_with_class_and_duration_counts: true
 
 status:
-  exact_dates: pending_waveform_coverage_audit
-  exact_window_length: pending_signal_duration_audit
+  split_manifest: data/manifests/positive_split_assignments.csv
+  split_assignment: frozen_pilot_v0.1
+  exact_window_length_seconds: 600
   event_matching_tolerance: must_be_frozen_before_final_test
+  neural_training: blocked_pending_independent_continuous_background_and_shortcut_audit

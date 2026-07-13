@@ -1,0 +1,19 @@
+version: primary-mh-v0.1
+status: frozen_for_pilot_baselines
+channels: [MHZ, MH1, MH2]
+channel_selection_order: [MHZ, MH1, MH2]
+native_sample_rate_hz: 6.625
+window_seconds: 600
+positive_seconds_before_reference: 120
+positive_seconds_after_reference: 480
+timing_mapping: nearest_valid_att_value_to_nominal_mseed_sample
+gap_sentinel: -1
+gap_policy: preserve_binary_mask_and_replace_with_zero_only_after_centering
+interpolate_gaps: false
+waveform_centering: per_window_valid_sample_median
+waveform_scaling: none_for_energy_and_sta_lta_baselines
+learned_feature_scaling: fit_on_training_fold_only
+shz_role: excluded_from_primary_due_to_different_sample_rate; retained_for_descriptive_and_sensitivity_work
+background_name: catalog_negative_background
+background_event_exclusion_seconds: 3600
+background_sampling_warning: available_days_were_selected_for_positive_coverage_and_are_not_a_final_continuous_scanning_frame

@@ -14,11 +14,13 @@ scope:
 positive_events:
   catalog: levent.1008weber.csv
   unified_candidate_manifest: data/manifests/unified_positive_events.csv
-  unified_candidate_status: not_frozen_nonshallow_waveform_qa_pending
+  unified_candidate_status: all_planned_positive_waveform_qa_attached
   nonshallow_download_plan: data/manifests/nonshallow_download_plan.json
-  nonshallow_download_status: batches_1_and_2_verified_batches_3_and_4_pending
+  nonshallow_download_status: all_four_batches_exact_size_and_md5_verified
   nonshallow_batch_1_quality: data/manifests/nonshallow_batch_1_request_quality.csv
   nonshallow_batch_2_quality: data/manifests/nonshallow_batch_2_request_quality.csv
+  nonshallow_batch_3_quality: data/manifests/nonshallow_batch_3_request_quality.csv
+  nonshallow_batch_4_quality: data/manifests/nonshallow_batch_4_request_quality.csv
   accepted_t2_codes: [A, M, C, H, L, S]
   accepted_grades: [A, B]
   require_positive_visibility_flag: true
@@ -30,14 +32,14 @@ labels:
   exploratory_secondary: [deep_moonquake, natural_impact]
   descriptive_only: [shallow_moonquake, artificial_impact]
   shallow_manifest: data/manifests/onodera_2024_shallow_events.csv
-  shallow_use_status: event_window_qa_required_before_training
+  shallow_use_status: descriptive_only_all_events_have_usable_window
   shallow_repeating_groups:
     - [KO-SMQ-26, KO-SMQ-40]
 
 timing:
   preserve_nominal_mseed_time: true
   preserve_att_earth_reception_time: true
-  correction_policy: pending_audit
+  correction_policy: nearest_valid_att_to_nominal_mseed_v0.1
   catalog_minute_is_not_phase_pick: true
 
 negative_sampling:
@@ -47,7 +49,8 @@ negative_sampling:
   sample_only_after_split_assignment: true
 
 preprocessing:
-  status: not_frozen
+  status: primary_mh_v0.1_frozen_for_pilot_baselines
+  config: configs/data/preprocessing_v0.1.yaml
   gap_sentinel: -1
   interpolate_gaps: false
   normalization_uses_training_only: true

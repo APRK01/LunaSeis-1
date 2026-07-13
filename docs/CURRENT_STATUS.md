@@ -4,7 +4,7 @@ Last updated: 2026-07-13 (Asia/Kolkata)
 
 ## State
 
-Phase 0 feasibility is achieved and Phase 1 is active. The 1,314-event registry and shallow QA are established; nonshallow Batches 1 and 2 are fully checksum-verified and locally audited. Cross-station aggregation now gives 946 usable, three questionable, nine rejected-only, and 282 not-yet-covered nonshallow events; Batches 3–4 remain pending. No models have been trained and no performance results exist.
+Phase 0 feasibility is achieved and Phase 1 is active. All 15,106 planned nonshallow products are checksum-verified and all 1,159 archive-backed events are audited. The registry has 1,220 integrity-audited candidates, three questionable, ten rejected-only, and 81 archive-unavailable/pending. Pilot LOSO splits, catalog-negative candidates, primary MH preprocessing, and three classical diagnostic baselines exist. No neural model has been trained; Decision 0016 blocks training until an independent continuous-background frame and shortcut audit exist.
 
 ## Completed
 
@@ -70,6 +70,16 @@ Phase 0 feasibility is achieved and Phase 1 is active. The 1,314-event registry 
 - Classified 586 Batch 2 events usable, three questionable, and ten rejected within the batch; reviewed every suspicious request and the aggregate QA figure.
 - Generalized unified-registry attachment to discover and combine all available audited batches, preserving station-specific rejected evidence.
 - Rebuilt the registry with 946 usable, three questionable, nine rejected-only, and 282 pending nonshallow events; every event label and evaluation group remained unchanged.
+- Downloaded and independently reverified all 4,014 Batch 3 products (2,145,641,669 bytes) and all 2,424 Batch 4 products (1,202,552,783 bytes).
+- Closed the complete nonshallow plan at 15,106 products and 7,636,136,244 verified bytes across 2,496 station-days.
+- Audited Batches 3–4 and consolidated 6,236 positive-channel windows, 2,476 event-station requests, and all 1,159 archive-backed events.
+- Final nonshallow aggregation is 1,146 usable, three questionable, ten rejected-only, and 81 archive-unavailable candidates.
+- Quantified strict/primary/lenient integrity sensitivity and froze the reproducible nearest-valid-ATT-to-nominal mapping while preserving unresolved physical timing semantics.
+- Generated 4,747 fold-specific positive assignments with physical-event/deep-family groups indivisible and no group crossing roles within a fold.
+- Generated 81,980 deterministic catalog-negative candidates after split assignment with a ±1-hour all-catalog exclusion buffer and explicit positive-day selection-bias warning.
+- Froze primary MH preprocessing v0.1 and generated 3,910 primary positive windows.
+- Ran energy, STA/LTA, and handcrafted logistic pilot baselines across all four LOSO folds; retained results as diagnostics only.
+- Triggered a shortcut/training gate because S12 logistic F1 0.870 and 0.284 FP/hour is anomalously stronger than other folds on a biased background frame.
 
 ## Files changed
 
@@ -171,9 +181,36 @@ Phase 0 feasibility is achieved and Phase 1 is active. The 1,314-event registry 
 - `results/figures/nonshallow_batch_2_quality_overview.png`
 - `docs/nonshallow_batch_2_audit.md`
 - `docs/decisions/0014-nonshallow-batch-2-integrity-result.md`
+- `data/manifests/nonshallow_batch_{3,4}_download_receipt.json`
+- `data/manifests/nonshallow_batch_{3,4}_window_quality.csv`
+- `data/manifests/nonshallow_batch_{3,4}_request_quality.csv`
+- `results/predictions/nonshallow_batch_{3,4}_quality_summary.json`
+- `results/figures/nonshallow_batch_{3,4}_quality_overview.png`
+- `scripts/audit_all_nonshallow.py`
+- `results/predictions/nonshallow_all_batches_audit.json`
+- `scripts/build_dataset_splits.py`
+- `data/manifests/positive_split_assignments.csv`
+- `scripts/build_background_manifest.py`
+- `data/manifests/background_window_candidates.csv`
+- `scripts/build_preprocessing_manifest.py`
+- `data/manifests/preprocessing_positive_windows.csv`
+- `configs/data/preprocessing_v0.1.yaml`
+- `scripts/run_pilot_baselines.py`
+- `results/predictions/pilot_baselines_v0.1.json`
+- `results/figures/pilot_baselines_v0.1.png`
+- `scripts/audit_pilot_dataset.py`
+- `results/predictions/pilot_dataset_audit.json`
+- `docs/nonshallow_all_batches_audit.md`
+- `docs/pilot_dataset_and_baselines_v0.1.md`
+- `docs/research_protocol_v0.2.md`
+- `docs/decisions/0015-all-batch-att-integrity-policy.md`
+- `docs/decisions/0016-pilot-splits-background-and-training-gate.md`
+
+Exact additional files changed for the all-batch/split/baseline task: `configs/data/pilot.yaml`, `configs/data/preprocessing_v0.1.yaml`, `configs/experiment/leave_one_station_out.yaml`, `data/manifests/background_window_candidates.csv`, `data/manifests/nonshallow_batch_3_download_receipt.json`, `data/manifests/nonshallow_batch_3_request_quality.csv`, `data/manifests/nonshallow_batch_3_window_quality.csv`, `data/manifests/nonshallow_batch_4_download_receipt.json`, `data/manifests/nonshallow_batch_4_request_quality.csv`, `data/manifests/nonshallow_batch_4_window_quality.csv`, `data/manifests/positive_split_assignments.csv`, `data/manifests/preprocessing_positive_windows.csv`, `data/manifests/unified_positive_event_audit.json`, `data/manifests/unified_positive_events.csv`, `docs/CURRENT_STATUS.md`, `docs/DECISIONS.md`, `docs/ROADMAP.md`, `docs/data_dictionary.md`, `docs/unified_positive_manifest_audit.md`, `docs/nonshallow_all_batches_audit.md`, `docs/pilot_dataset_and_baselines_v0.1.md`, `docs/research_protocol_v0.2.md`, `docs/decisions/0015-all-batch-att-integrity-policy.md`, `docs/decisions/0016-pilot-splits-background-and-training-gate.md`, `results/figures/nonshallow_batch_3_quality_overview.png`, `results/figures/nonshallow_batch_4_quality_overview.png`, `results/figures/pilot_baselines_v0.1.png`, `results/predictions/nonshallow_all_batches_audit.json`, `results/predictions/nonshallow_batch_3_quality_summary.json`, `results/predictions/nonshallow_batch_4_quality_summary.json`, `results/predictions/pilot_baselines_v0.1.json`, `results/predictions/pilot_dataset_audit.json`, `scripts/audit_all_nonshallow.py`, `scripts/audit_pilot_dataset.py`, `scripts/build_background_manifest.py`, `scripts/build_dataset_splits.py`, `scripts/build_preprocessing_manifest.py`, `scripts/build_unified_positive_manifest.py`, `scripts/run_pilot_baselines.py`, `tests/test_audit_all_nonshallow.py`, `tests/test_build_background_manifest.py`, `tests/test_build_dataset_splits.py`, `tests/test_build_preprocessing_manifest.py`, and `tests/test_run_pilot_baselines.py`.
 
 ## Commands and verification
 
+- Ran script compilation, the full 31-test regression suite, dataset-manifest hash/leakage audit, registry/receipt/label invariants, YAML parsing, and `git diff --check`; all passed.
 - Ran script compilation, the full 26-test regression suite, Ruby YAML parsing, `git diff --check`, and explicit Batch 2 receipt/QA/registry invariants; all passed. An initial optional Python `yaml` import was unavailable, so YAML validation was rerun successfully with the system Ruby parser.
 - Ran script compilation, YAML parsing, the full 25-test suite, `git diff --check`, and explicit Batch 1 receipt/QA/registry invariants, including checks that every physical label and evaluation group remained unchanged; all passed.
 
@@ -226,6 +263,11 @@ Phase 0 feasibility is achieved and Phase 1 is active. The 1,314-event registry 
 - Ran `scripts/audit_nonshallow_batch.py --batch-id 2`; generated 1,337 channel rows, 599 request rows, aggregate JSON, and an overview figure.
 - Reviewed all three questionable and ten rejected Batch 2 requests from row-level gap and ATT evidence and visually inspected the full-resolution aggregate figure.
 - Rebuilt the unified registry from all existing batch QA files; explicitly compared it with the committed registry and confirmed identical event IDs, physical labels, and evaluation groups.
+- Ran and idempotently reran `download_nonshallow_batch.py` for Batches 3 and 4; every planned byte and NASA MD5 passed.
+- Ran `audit_nonshallow_batch.py` for Batches 3 and 4 and visually inspected both full-resolution QA figures.
+- Reviewed all non-usable Batch 3/4 request/channel records from their raw gap and ATT measurements.
+- Ran `audit_all_nonshallow.py`, `build_dataset_splits.py`, `build_background_manifest.py`, and `build_preprocessing_manifest.py`; checked aggregate counts and group-role isolation.
+- Ran `run_pilot_baselines.py` across all four folds and visually inspected the baseline comparison figure.
 
 ## Decisions
 
@@ -245,11 +287,13 @@ Phase 0 feasibility is achieved and Phase 1 is active. The 1,314-event registry 
 - Use only positive channels plus ATT for first-pass nonshallow QA, include required midnight boundary days, and download in four bounded station-day batches if authorized.
 - Accept the 648 Batch 1 events passing gap/ATT integrity, preserve two as questionable, exclude eight from usable windows, and keep RMS/extreme-value metrics descriptive.
 - Attach Batch 2 station-level outcomes using the same integrity rules; aggregate physical-event usability across audited stations while preserving rejected requests and keeping amplitude metrics descriptive.
+- Freeze nearest-valid ATT mapping plus primary and sensitivity integrity thresholds without claiming catalog phase-pick semantics are resolved.
+- Freeze group-disjoint LOSO pilot splits and primary MH preprocessing; block neural training on the coverage-selected background frame.
 
 ## Unresolved uncertainties
 
 - Exact scalable ATT correction/interpolation policy and catalog-pick time-basis reconciliation remain unresolved.
-- The corrected Onodera catalog is integrated, but event-window gap/signal quality and independent confidence for the 46 KO detections remain unaudited.
+- The corrected Onodera catalog has integrity-audited windows, but independent confidence in the 46 KO detections remains unresolved.
 - Written PDS clarification is still required before publishing catalog CSVs or catalog-derived labeled windows.
 - The candidate event's time standard and precise relationship to waveform/timing-trace time remain unresolved.
 - Waveform reuse has an operational CC0 basis; catalog and catalog-derived dataset licensing still requires written PDS clarification before republication.
@@ -258,14 +302,14 @@ Phase 0 feasibility is achieved and Phase 1 is active. The 1,314-event registry 
 - Automated integrity QA now covers all 74 events, but morphology/artifact review beyond aggregate metrics remains incomplete.
 - The 20%/50% SHZ-gap and 1 s/10 s ATT thresholds are provisional engineering gates requiring sensitivity analysis before protocol freeze.
 - Fifteen intact windows lack a clear raw RMS increase and two are unquantifiable; they require review without label demotion or cherry-picking.
-- The 1,240 nonshallow candidates have catalog visibility but not the SHZ/ATT window integrity audit completed for shallow events.
 - Seven corrected legacy shallow events retain PDS grade C and three are ungraded; their inclusion comes from Onodera provenance and must be handled explicitly in sensitivity analyses.
 - The 81 nonshallow candidates without an archive-backed positive request may reflect deployment/archive/visibility inconsistencies and require source-specific review before any permanent exclusion claim.
 - Batch 1 extreme-value occupancy flags possible constant/saturated/quantized windows but lacks a frozen physical clipping rule; it cannot yet drive exclusion.
-- Batch 1's two questionable ATT offsets and provisional thresholds require all-batch sensitivity analysis before protocol freeze.
-- Batch 2's three questionable cases and provisional thresholds require all-batch sensitivity analysis before protocol freeze.
-- The 282 nonshallow events not yet covered after Batches 1–2 still require Batches 3–4 QA or explicit archive-unavailable handling.
+- The 81 nonshallow candidates without complete archive-backed requests remain unavailable and require source-specific review.
+- The catalog start-time physical meaning and absolute time standard remain unresolved even though computational ATT mapping is frozen.
+- Pilot backgrounds come from days selected for positive coverage and cannot support final false-alarm or neural-model claims.
+- The anomalously strong S12 logistic result requires explicit temporal/channel/acquisition shortcut analysis.
 
 ## Exact next task
 
-Download and checksum-verify nonshallow Batch 3 (4,014 products; 2,145,641,669 bytes), then apply the identical event/station/channel ATT-gap audit and attach its outcomes before proceeding to Batch 4.
+Design and checksum-plan an independently selected, storage-bounded continuous-background sample across S12/S14/S15/S16, with predeclared duration and no positive-day conditioning, before any neural training.

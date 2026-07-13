@@ -1,0 +1,41 @@
+{
+  "positive_assignment_count": 4747,
+  "background_candidate_count": 81980,
+  "preprocessing_positive_count": 3910,
+  "positive_counts_by_fold_role": {
+    "holdout_S12|test": 590,
+    "holdout_S12|train": 591,
+    "holdout_S12|validation": 111,
+    "holdout_S14|test": 841,
+    "holdout_S14|train": 238,
+    "holdout_S14|validation": 62,
+    "holdout_S15|test": 585,
+    "holdout_S15|train": 458,
+    "holdout_S15|validation": 97,
+    "holdout_S16|test": 542,
+    "holdout_S16|train": 532,
+    "holdout_S16|validation": 100
+  },
+  "background_counts_by_fold_role": {
+    "holdout_S12|test": 5220,
+    "holdout_S12|train": 12243,
+    "holdout_S12|validation": 3032,
+    "holdout_S14|test": 6448,
+    "holdout_S14|train": 11735,
+    "holdout_S14|validation": 2312,
+    "holdout_S15|test": 4389,
+    "holdout_S15|train": 13212,
+    "holdout_S15|validation": 2894,
+    "holdout_S16|test": 4438,
+    "holdout_S16|train": 13321,
+    "holdout_S16|validation": 2736
+  },
+  "evaluation_group_role_conflicts": {},
+  "result": "pass",
+  "manifest_sha256": {
+    "positive_splits": "0a1745b2a85ca940bc32a49928badf1829e065327222b7ac4000afbd1076d2bb",
+    "background_candidates": "3f6bddb0c6b757b92ca36ac391906ab1b43abd2c39c2656c219e2e0148bb9109",
+    "preprocessing_positives": "001a7e34f07cdfcddfa50e906b6144fd74740f72fc725653a2c0b4c8530a4935"
+  },
+  "warning": "Background candidates are pilot-only because source days were selected for positive coverage."
+}

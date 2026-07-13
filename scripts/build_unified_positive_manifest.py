@@ -105,7 +105,7 @@ def main() -> None:
             "type_code_t2": row["type_code_t2"], "grade": row["grade"], "family_id": row["family_id"],
             "reported_stations": row["positive_visibility_stations"],
             "positive_visibility_channels": row["positive_visibility_channels"],
-            "waveform_qa_scope": "not_yet_audited_for_unified_manifest",
+            "waveform_qa_scope": "ATT_positive_channel_120s_pre_480s_post" if batch_rows else "archive_request_unavailable",
             "usable_stations": "", "questionable_stations": "", "rejected_stations": "",
             "usable_window_count": "", "questionable_window_count": "", "rejected_window_count": "",
             "candidate_status": candidate_status,
@@ -193,7 +193,11 @@ def main() -> None:
             "shallow_events_with_usable_window": sum(row["event_class"] == "shallow_moonquake" and row["candidate_status"] == "candidate_integrity_audited" for row in records),
             "shallow_rejected_windows_preserved": sum(int(row["rejected_window_count"] or 0) for row in records),
             "shallow_questionable_windows_preserved": sum(int(row["questionable_window_count"] or 0) for row in records),
-            "nonshallow_status": f"Batches {','.join(attached_batch_ids)} QA attached where covered; remaining batches pending; positive visibility is not waveform validation",
+            "nonshallow_status": (
+                "All four planned batches attached; positive visibility is not waveform validation"
+                if attached_batch_ids == ["1", "2", "3", "4"]
+                else f"Batches {','.join(attached_batch_ids)} QA attached where covered; remaining batches pending; positive visibility is not waveform validation"
+            ),
             "nonshallow_attached_batches": attached_batch_ids,
             "nonshallow_audited_event_status_counts": dict(Counter(
                 row["nonshallow_qa_status"] for row in records
@@ -213,7 +217,7 @@ def main() -> None:
             "result": "pass" if not duplicate_ids and not duplicate_source_ownership and not duplicate_minutes and not conflicting_times else "review_required",
         },
         "manifest_sha256": sha,
-        "scope_warning": "Candidate manifest, not a frozen training set. Nonshallow waveform QA, background sampling, and split assignment remain pending.",
+        "scope_warning": "Candidate manifest, not a final training set. Pilot backgrounds/splits exist, but an independent continuous-scanning frame remains pending.",
     }
     args.audit.write_text(json.dumps(audit, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(audit, indent=2))

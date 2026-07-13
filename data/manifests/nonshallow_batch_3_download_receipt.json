@@ -1,0 +1,9 @@
+{
+  "source_plan": "data/manifests/nonshallow_download_plan.json",
+  "batch_id": 3,
+  "verified_product_count": 4014,
+  "verified_total_bytes": 2145641669,
+  "downloaded_product_count_this_run": 0,
+  "reused_product_count_this_run": 4014,
+  "integrity": "exact size and MD5 verified for every batch product"
+}
