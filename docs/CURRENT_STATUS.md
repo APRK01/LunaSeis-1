@@ -4,7 +4,7 @@ Last updated: 2026-07-13 (Asia/Kolkata)
 
 ## State
 
-Phase 0 feasibility is achieved and Phase 1 is active. A leakage-aware unified registry now contains 1,314 positive-event candidates with corrected catalog merging, source-specific QA status, and conflict checks. Shallow waveform QA is complete; nonshallow waveform QA remains pending. No models have been trained and no performance results exist.
+Phase 0 feasibility is achieved and Phase 1 is active. The 1,314-event unified registry is established, shallow QA is complete, and nonshallow archive availability/storage is exactly planned. Of 1,240 nonshallow candidates, 1,159 retain an archive-backed positive request; their 7.11 GiB waveforms are not yet downloaded or locally QA-audited. No models have been trained and no performance results exist.
 
 ## Completed
 
@@ -56,6 +56,10 @@ Phase 0 feasibility is achieved and Phase 1 is active. A leakage-aware unified r
 - Assigned indivisible physical-event, 115 deep-family, and KO-SMQ-26/KO-SMQ-40 repeating-pair evaluation groups.
 - Passed duplicate ID, source ownership, same-minute overlap, cross-class conflict, and legacy PDS-type checks.
 - Counted 609 deep, 623 natural-impact, 74 shallow, and eight artificial-impact physical candidates; nonshallow candidates remain pending waveform QA.
+- Converted 1,240 nonshallow candidates into 3,071 event-station requests and 2,496 deduplicated/boundary-complete station-days.
+- Verified that 1,159 candidates have at least one PDS-backed positive station request; preserved 81 unavailable candidates (57 assigned deep, 24 natural impacts) without relabeling.
+- Produced an exact plan for 15,106 MiniSEED/XML products totaling 7,636,136,244 bytes (7.11171 GiB), each with official PDS MD5.
+- Partitioned the plan into four deterministic station-day-preserving batches no larger than approximately 2 GiB; no nonshallow waveform data was downloaded.
 
 ## Files changed
 
@@ -133,6 +137,12 @@ Phase 0 feasibility is achieved and Phase 1 is active. A leakage-aware unified r
 - `data/manifests/unified_positive_event_audit.json`
 - `docs/unified_positive_manifest_audit.md`
 - `docs/decisions/0011-unified-positive-candidate-registry.md`
+- `scripts/build_nonshallow_download_plan.py`
+- `tests/test_build_nonshallow_download_plan.py`
+- `data/manifests/nonshallow_waveform_requests.csv`
+- `data/manifests/nonshallow_download_plan.json`
+- `docs/nonshallow_storage_availability_audit.md`
+- `docs/decisions/0012-batched-nonshallow-waveform-plan.md`
 
 ## Commands and verification
 
@@ -173,6 +183,10 @@ Phase 0 feasibility is achieved and Phase 1 is active. A leakage-aware unified r
 - Ran `.venv/bin/python scripts/build_unified_positive_manifest.py`; generated 1,314 candidate rows and the machine-readable source/QA/leakage/conflict audit.
 - Verified 1,240 PDS nonshallow plus 74 corrected shallow candidates, 28 exact source merges, 46 KO additions, 824 evaluation groups, and a clean overlap/conflict result.
 - Ran the full regression suite (17 tests), script compilation, YAML parsing, `git diff --check`, manifest SHA-256 verification, and explicit invariants for all eight requested gates; all passed.
+- Ran `.venv/bin/python scripts/build_nonshallow_download_plan.py --workers 8`; inspected and cached 2,496 official PDS station-day listings, fetched the official MD5 manifest, and generated request/product plans.
+- Corrected and retested MiniSEED location-code handling (`00` for MH, blank for ATT/SHZ) and channel-summary parsing before accepting results.
+- Verified exact product/byte/channel/batch totals, 81 missing events, boundary-day coverage, and request CSV SHA-256; no bulk download occurred.
+- Ran script compilation, YAML parsing, the full 20-test regression suite, `git diff --check`, and independent product/path/MD5/byte/batch/station-day invariants; all passed.
 
 ## Decisions
 
@@ -189,6 +203,7 @@ Phase 0 feasibility is achieved and Phase 1 is active. A leakage-aware unified r
 - Use only the 2026-corrected Onodera tables for the 74-event shallow audit; preserve attribution and CC BY-NC constraints.
 - Do not promote shallow classification to a headline task; require window QA and group KO-SMQ-26/KO-SMQ-40 together.
 - Represent each physical candidate once; merge corrected legacy shallow identities with PDS and never conflate positive visibility with audited waveform integrity.
+- Use only positive channels plus ATT for first-pass nonshallow QA, include required midnight boundary days, and download in four bounded station-day batches if authorized.
 
 ## Unresolved uncertainties
 
@@ -204,7 +219,9 @@ Phase 0 feasibility is achieved and Phase 1 is active. A leakage-aware unified r
 - Fifteen intact windows lack a clear raw RMS increase and two are unquantifiable; they require review without label demotion or cherry-picking.
 - The 1,240 nonshallow candidates have catalog visibility but not the SHZ/ATT window integrity audit completed for shallow events.
 - Seven corrected legacy shallow events retain PDS grade C and three are ungraded; their inclusion comes from Onodera provenance and must be handled explicitly in sensitivity analyses.
+- The 81 nonshallow candidates without an archive-backed positive request may reflect deployment/archive/visibility inconsistencies and require source-specific review before any permanent exclusion claim.
+- Availability for 1,159 nonshallow events does not establish gap-free windows; local ATT/gap QA remains pending.
 
 ## Exact next task
 
-Plan and execute a storage-bounded waveform availability/integrity audit for the 1,240 nonshallow candidates, beginning with exact station-day/product deduplication and byte sizing before any additional bulk download.
+Download and checksum-verify nonshallow batch 1 (5,398 products; 2,142,346,643 bytes), then run the event-window ATT/gap integrity audit for only the events covered by that batch before proceeding to batch 2.

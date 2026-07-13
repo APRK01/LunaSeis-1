@@ -15,6 +15,8 @@ positive_events:
   catalog: levent.1008weber.csv
   unified_candidate_manifest: data/manifests/unified_positive_events.csv
   unified_candidate_status: not_frozen_nonshallow_waveform_qa_pending
+  nonshallow_download_plan: data/manifests/nonshallow_download_plan.json
+  nonshallow_download_status: planned_not_downloaded
   accepted_t2_codes: [A, M, C, H, L, S]
   accepted_grades: [A, B]
   require_positive_visibility_flag: true

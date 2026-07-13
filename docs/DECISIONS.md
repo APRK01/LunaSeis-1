@@ -13,5 +13,6 @@
 | 2026-07-13 | 0009 | Integrate the corrected 74-event Onodera shallow catalog, but keep shallow classification descriptive/exploratory. | Coverage exists for all events, but S15-centric discovery, label uncertainty, correlation, and sample size do not support headline four-class claims. | Accepted; window QA required before use |
 | 2026-07-13 | 0010 | Gate shallow windows by SHZ gaps and nearest valid ATT mapping; keep raw signal ratios descriptive. | Availability alone misses local outages, while signal-conditioned acceptance risks selection bias and label inflation. | Provisional thresholds; sensitivity analysis required |
 | 2026-07-13 | 0011 | Build one event-level positive registry; merge 28 legacy shallow identities and retain source-specific QA status. | Appending catalogs duplicates events, and PDS visibility is not equivalent to audited waveform usability. | Accepted candidate-registry rule |
+| 2026-07-13 | 0012 | Plan minimum positive channels plus ATT in four station-day-preserving download batches. | The checksum-backed 7.11 GiB selection is storage-safe and resumable; downloading unrelated channels is unnecessary for the first QA gate. | Accepted plan; download not yet executed |
 
 Formal records live in `docs/decisions/`.

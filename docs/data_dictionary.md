@@ -38,3 +38,8 @@ Contains authoritative code/grade decoding, full and conservative counts, year/s
 
 - `unified_positive_events.csv`: one row per physical positive candidate with source/time/label provenance, event and evaluation groups, reported stations/channels, shallow-window QA aggregation, candidate status, and release note. It is not a frozen training manifest.
 - `unified_positive_event_audit.json`: exact class/station counts, source reconciliation, QA coverage, leakage-group counts, duplicate/conflict checks, scope warning, and SHA-256 of the unified CSV.
+
+## Nonshallow waveform plan
+
+- `nonshallow_waveform_requests.csv`: one row per event/station request with positive channels, boundary-complete station-days, complete/missing channel results, and station-request usability.
+- `nonshallow_download_plan.json`: exact selected product paths, URLs, bytes, official MD5 values, deterministic batch IDs/summaries, missing-event list, channel totals, and request-manifest SHA-256. It is a plan, not downloaded data.
