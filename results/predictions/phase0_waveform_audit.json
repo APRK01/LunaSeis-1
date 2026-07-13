@@ -1,0 +1,124 @@
+{
+  "source_bundle": "urn:nasa:pds:apollo_pse::1.0",
+  "event": "Apollo 15 S-IVB artificial impact",
+  "published_origin_time": "1971-07-29T20:58:42.900000Z",
+  "processing": "none; raw values audited; -1 sentinels masked only in plot",
+  "stations": {
+    "S12": {
+      "published_p_arrival": "1971-07-29T20:59:37.900000Z",
+      "att_mapping": {
+        "target_time": "1971-07-29T20:59:37.900000Z",
+        "nearest_att_time": "1971-07-29T20:59:37.889000Z",
+        "nominal_time_at_nearest_att": "1971-07-29T20:59:38.229649Z",
+        "att_minus_target_seconds": -0.011,
+        "nominal_minus_target_seconds": 0.329649,
+        "att_minus_nominal_seconds": -0.340649
+      },
+      "traces": {
+        "ATT": {
+          "id": "XA.S12..ATT",
+          "start_time": "1971-07-29T12:50:51.739083Z",
+          "end_time": "1971-07-30T00:00:00.267385Z",
+          "sample_rate_hz": 1.65625,
+          "sample_count": 66497,
+          "sentinel_count_full_day": 215,
+          "sentinel_count_plot_window": 0,
+          "plot_window_sample_count": 996
+        },
+        "MH1": {
+          "id": "XA.S12.00.MH1",
+          "start_time": "1971-07-29T12:50:51.814083Z",
+          "end_time": "1971-07-30T00:00:00.795215Z",
+          "sample_rate_hz": 6.625,
+          "sample_count": 265988,
+          "sentinel_count_full_day": 1217,
+          "sentinel_count_plot_window": 90,
+          "plot_window_sample_count": 3977
+        },
+        "MH2": {
+          "id": "XA.S12.00.MH2",
+          "start_time": "1971-07-29T12:50:51.833083Z",
+          "end_time": "1971-07-30T00:00:00.814215Z",
+          "sample_rate_hz": 6.625,
+          "sample_count": 265988,
+          "sentinel_count_full_day": 1222,
+          "sentinel_count_plot_window": 86,
+          "plot_window_sample_count": 3977
+        },
+        "MHZ": {
+          "id": "XA.S12.00.MHZ",
+          "start_time": "1971-07-29T12:50:51.852083Z",
+          "end_time": "1971-07-30T00:00:00.833215Z",
+          "sample_rate_hz": 6.625,
+          "sample_count": 265988,
+          "sentinel_count_full_day": 1235,
+          "sentinel_count_plot_window": 80,
+          "plot_window_sample_count": 3977
+        }
+      }
+    },
+    "S14": {
+      "published_p_arrival": "1971-07-29T20:59:19.500000Z",
+      "att_mapping": {
+        "target_time": "1971-07-29T20:59:19.500000Z",
+        "nearest_att_time": "1971-07-29T20:59:19.785000Z",
+        "nominal_time_at_nearest_att": "1971-07-29T20:59:24.733245Z",
+        "att_minus_target_seconds": 0.285,
+        "nominal_minus_target_seconds": 5.233245,
+        "att_minus_nominal_seconds": -4.948245
+      },
+      "traces": {
+        "ATT": {
+          "id": "XA.S14..ATT",
+          "start_time": "1971-07-29T00:00:00.054000Z",
+          "end_time": "1971-07-30T00:00:05.487962Z",
+          "sample_rate_hz": 1.65625,
+          "sample_count": 143110,
+          "sentinel_count_full_day": 758,
+          "sentinel_count_plot_window": 0,
+          "plot_window_sample_count": 996
+        },
+        "MH1": {
+          "id": "XA.S14.00.MH1",
+          "start_time": "1971-07-29T00:00:00.129000Z",
+          "end_time": "1971-07-30T00:00:06.015792Z",
+          "sample_rate_hz": 6.625,
+          "sample_count": 572440,
+          "sentinel_count_full_day": 3774,
+          "sentinel_count_plot_window": 66,
+          "plot_window_sample_count": 3977
+        },
+        "MH2": {
+          "id": "XA.S14.00.MH2",
+          "start_time": "1971-07-29T00:00:00.148000Z",
+          "end_time": "1971-07-30T00:00:06.034792Z",
+          "sample_rate_hz": 6.625,
+          "sample_count": 572440,
+          "sentinel_count_full_day": 3813,
+          "sentinel_count_plot_window": 52,
+          "plot_window_sample_count": 3977
+        },
+        "MHZ": {
+          "id": "XA.S14.00.MHZ",
+          "start_time": "1971-07-29T00:00:00.167000Z",
+          "end_time": "1971-07-30T00:00:06.053792Z",
+          "sample_rate_hz": 6.625,
+          "sample_count": 572440,
+          "sentinel_count_full_day": 3509,
+          "sentinel_count_plot_window": 95,
+          "plot_window_sample_count": 3977
+        },
+        "SHZ": {
+          "id": "XA.S14..SHZ",
+          "start_time": "1971-07-29T00:00:00.063000Z",
+          "end_time": "1971-07-30T00:00:06.081868Z",
+          "sample_rate_hz": 53.0,
+          "sample_count": 4579520,
+          "sentinel_count_full_day": 309044,
+          "sentinel_count_plot_window": 2072,
+          "plot_window_sample_count": 31802
+        }
+      }
+    }
+  }
+}

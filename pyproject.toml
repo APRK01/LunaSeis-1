@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68,<81"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lunaseis"
+version = "0.1.0"
+description = "Reproducible lightweight machine learning for Apollo lunar seismic data"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "matplotlib==3.10.3",
+  "numpy==2.5.1",
+  "obspy==1.4.2",
+  "scipy==1.18.0",
+  "setuptools==80.10.2",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
