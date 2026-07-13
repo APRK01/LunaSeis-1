@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import csv
+import argparse
 import hashlib
 import json
 from datetime import datetime
@@ -98,9 +99,16 @@ def logistic_fit(x: np.ndarray, y: np.ndarray) -> np.ndarray:
 
 
 def main() -> None:
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--background",type=Path,default=Path("data/manifests/background_window_candidates.csv"))
+    parser.add_argument("--output",type=Path,default=Path("results/predictions/pilot_baselines_v0.1.json"))
+    parser.add_argument("--figure",type=Path,default=Path("results/figures/pilot_baselines_v0.1.png"))
+    parser.add_argument("--status",default="pilot_only_not_paper_result")
+    parser.add_argument("--background-warning",default="available days were selected for positive coverage; continuous-scanning evaluation remains required")
+    args=parser.parse_args()
     positives = list(csv.DictReader(Path("data/manifests/preprocessing_positive_windows.csv").open(newline="")))
-    backgrounds = [r for r in csv.DictReader(Path("data/manifests/background_window_candidates.csv").open(newline="")) if r["channel"] in {"MHZ", "MH1", "MH2"}]
-    report = {"status": "pilot_only_not_paper_result", "background_bias_warning": "available days were selected for positive coverage; continuous-scanning evaluation remains required", "folds": {}}
+    backgrounds = [r for r in csv.DictReader(args.background.open(newline="")) if r["channel"] in {"MHZ", "MH1", "MH2"}]
+    report = {"status": args.status, "background_manifest":str(args.background),"background_bias_warning":args.background_warning, "folds": {}}
     for fold in sorted({r["fold"] for r in positives}):
         datasets = {}
         for role in ("train", "validation", "test"):
@@ -127,7 +135,7 @@ def main() -> None:
         threshold=best_threshold(val_scores,val_y); fold_report["logistic_handcrafted"]=metrics(test_scores,test_y,threshold)
         report["folds"][fold]=fold_report
         print(f"completed {fold}", flush=True)
-    path=Path("results/predictions/pilot_baselines_v0.1.json"); path.parent.mkdir(parents=True,exist_ok=True); path.write_text(json.dumps(report,indent=2)+"\n")
+    path=args.output; path.parent.mkdir(parents=True,exist_ok=True); path.write_text(json.dumps(report,indent=2)+"\n")
     names=("energy_rms","sta_lta","logistic_handcrafted"); folds=list(report["folds"])
     fig,axes=plt.subplots(1,2,figsize=(11,4.2)); x=np.arange(len(folds)); width=0.25
     for index,name in enumerate(names):
@@ -135,8 +143,8 @@ def main() -> None:
         axes[1].bar(x+(index-1)*width,[report["folds"][fold][name]["false_positives_per_hour"] for fold in folds],width,label=name)
     for axis,title,ylabel in ((axes[0],"Held-out-station F1","F1"),(axes[1],"Catalog-negative false alarms","False positives/hour")):
         axis.set_xticks(x,folds,rotation=20); axis.set_title(title); axis.set_ylabel(ylabel); axis.spines[["top","right"]].set_visible(False)
-    axes[0].legend(frameon=False,fontsize=8); fig.suptitle("LunaSeis-1 pilot baselines v0.1 (biased background frame; not paper results)"); fig.tight_layout()
-    figure=Path("results/figures/pilot_baselines_v0.1.png"); figure.parent.mkdir(parents=True,exist_ok=True); fig.savefig(figure,dpi=180); plt.close(fig)
+    axes[0].legend(frameon=False,fontsize=8); fig.suptitle(f"LunaSeis-1 baselines: {args.status}"); fig.tight_layout()
+    figure=args.figure; figure.parent.mkdir(parents=True,exist_ok=True); fig.savefig(figure,dpi=180); plt.close(fig)
     print(json.dumps(report,indent=2))
 
 

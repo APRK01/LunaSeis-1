@@ -4,7 +4,7 @@ Last updated: 2026-07-13 (Asia/Kolkata)
 
 ## State
 
-Phase 0 feasibility is achieved and Phase 1 is active. All 15,106 planned nonshallow products are checksum-verified and all 1,159 archive-backed events are audited. The registry has 1,220 integrity-audited candidates, three questionable, ten rejected-only, and 81 archive-unavailable/pending. Pilot LOSO splits, catalog-negative candidates, primary MH preprocessing, and three classical diagnostic baselines exist. No neural model has been trained; Decision 0016 blocks training until an independent continuous-background frame and shortcut audit exist.
+Phase 0 feasibility is achieved and Phase 1 is active. All positive-waveform QA is complete. Independent-background v0.1 adds 710 integrity-usable official-archive days and 22,444 event-buffered catalog-negative windows. The shortcut audit confirms that the old S12 metric was background-frame inflated. No neural model has been trained; Decision 0017 permits the first pilot tiny-CNN experiment, while paper-level claims remain blocked pending contiguous-scanning rules.
 
 ## Completed
 
@@ -80,6 +80,13 @@ Phase 0 feasibility is achieved and Phase 1 is active. All 15,106 planned nonsha
 - Froze primary MH preprocessing v0.1 and generated 3,910 primary positive windows.
 - Ran energy, STA/LTA, and handcrafted logistic pilot baselines across all four LOSO folds; retained results as diagnostics only.
 - Triggered a shortcut/training gate because S12 logistic F1 0.870 and 0.284 FP/hour is anomalously stronger than other folds on a biased background frame.
+- Selected 928 official archive station-days across 29 station/year strata with a fixed hash seed before inspecting channel completeness and without reading event catalogs.
+- Preserved 201 archive-incomplete selected days without replacement; planned 727 days with ATT plus at least one primary MH channel.
+- Downloaded/reused and independently reverified all 5,554 independent-background products totaling 1,585,898,632 bytes.
+- Audited full-day gaps, retaining 710 days (S12 210, S14 203, S15 164, S16 133) and rejecting 17 complete days under the frozen gate.
+- Constructed 22,444 distinct ten-minute catalog-negative windows after applying ±1-hour buffers around all PDS and corrected shallow catalog times.
+- Reran energy, STA/LTA, and handcrafted logistic baselines on independent days; S12 logistic changed from 0.870 F1 / 0.284 FP h⁻¹ to 0.795 / 2.123, confirming material background-frame inflation.
+- Opened pilot-only tiny-CNN development while retaining a block on paper-level claims and final evaluation.
 
 ## Files changed
 
@@ -208,8 +215,12 @@ Phase 0 feasibility is achieved and Phase 1 is active. All 15,106 planned nonsha
 
 Exact additional files changed for the all-batch/split/baseline task: `configs/data/pilot.yaml`, `configs/data/preprocessing_v0.1.yaml`, `configs/experiment/leave_one_station_out.yaml`, `data/manifests/background_window_candidates.csv`, `data/manifests/nonshallow_batch_3_download_receipt.json`, `data/manifests/nonshallow_batch_3_request_quality.csv`, `data/manifests/nonshallow_batch_3_window_quality.csv`, `data/manifests/nonshallow_batch_4_download_receipt.json`, `data/manifests/nonshallow_batch_4_request_quality.csv`, `data/manifests/nonshallow_batch_4_window_quality.csv`, `data/manifests/positive_split_assignments.csv`, `data/manifests/preprocessing_positive_windows.csv`, `data/manifests/unified_positive_event_audit.json`, `data/manifests/unified_positive_events.csv`, `docs/CURRENT_STATUS.md`, `docs/DECISIONS.md`, `docs/ROADMAP.md`, `docs/data_dictionary.md`, `docs/unified_positive_manifest_audit.md`, `docs/nonshallow_all_batches_audit.md`, `docs/pilot_dataset_and_baselines_v0.1.md`, `docs/research_protocol_v0.2.md`, `docs/decisions/0015-all-batch-att-integrity-policy.md`, `docs/decisions/0016-pilot-splits-background-and-training-gate.md`, `results/figures/nonshallow_batch_3_quality_overview.png`, `results/figures/nonshallow_batch_4_quality_overview.png`, `results/figures/pilot_baselines_v0.1.png`, `results/predictions/nonshallow_all_batches_audit.json`, `results/predictions/nonshallow_batch_3_quality_summary.json`, `results/predictions/nonshallow_batch_4_quality_summary.json`, `results/predictions/pilot_baselines_v0.1.json`, `results/predictions/pilot_dataset_audit.json`, `scripts/audit_all_nonshallow.py`, `scripts/audit_pilot_dataset.py`, `scripts/build_background_manifest.py`, `scripts/build_dataset_splits.py`, `scripts/build_preprocessing_manifest.py`, `scripts/build_unified_positive_manifest.py`, `scripts/run_pilot_baselines.py`, `tests/test_audit_all_nonshallow.py`, `tests/test_build_background_manifest.py`, `tests/test_build_dataset_splits.py`, `tests/test_build_preprocessing_manifest.py`, and `tests/test_run_pilot_baselines.py`.
 
+Exact files changed for independent-background v0.1: `configs/data/pilot.yaml`, `configs/experiment/leave_one_station_out.yaml`, `data/manifests/independent_background_station_days.csv`, `data/manifests/independent_background_download_plan.json`, `data/manifests/independent_background_batch_1_download_receipt.json`, `data/manifests/independent_background_day_quality.csv`, `data/manifests/independent_background_windows.csv`, `docs/CURRENT_STATUS.md`, `docs/DECISIONS.md`, `docs/ROADMAP.md`, `docs/data_dictionary.md`, `docs/research_protocol_v0.2.md`, `docs/independent_background_v0.1_audit.md`, `docs/decisions/0017-independent-background-and-pilot-training-gate.md`, `results/figures/independent_background_baselines_v0.1.png`, `results/predictions/independent_background_audit.json`, `results/predictions/independent_background_baselines_v0.1.json`, `scripts/audit_independent_background.py`, `scripts/build_independent_background_plan.py`, `scripts/download_nonshallow_batch.py`, `scripts/run_pilot_baselines.py`, `tests/test_audit_independent_background.py`, and `tests/test_build_independent_background_plan.py`.
+
 ## Commands and verification
 
+- Ran script compilation, the full 33-test regression suite, independent selection/receipt/day-gap/event-buffer/baseline invariants, YAML parsing, and `git diff --check`; all passed.
+- Built the independent plan from official archive directory discovery, ran the resumable downloader and disk-only reconciliation, audited 928 selected days, constructed event-buffered windows, reran all three baselines, and visually inspected the independent comparison figure.
 - Ran script compilation, the full 31-test regression suite, dataset-manifest hash/leakage audit, registry/receipt/label invariants, YAML parsing, and `git diff --check`; all passed.
 - Ran script compilation, the full 26-test regression suite, Ruby YAML parsing, `git diff --check`, and explicit Batch 2 receipt/QA/registry invariants; all passed. An initial optional Python `yaml` import was unavailable, so YAML validation was rerun successfully with the system Ruby parser.
 - Ran script compilation, YAML parsing, the full 25-test suite, `git diff --check`, and explicit Batch 1 receipt/QA/registry invariants, including checks that every physical label and evaluation group remained unchanged; all passed.
@@ -289,6 +300,7 @@ Exact additional files changed for the all-batch/split/baseline task: `configs/d
 - Attach Batch 2 station-level outcomes using the same integrity rules; aggregate physical-event usability across audited stations while preserving rejected requests and keeping amplitude metrics descriptive.
 - Freeze nearest-valid ATT mapping plus primary and sensitivity integrity thresholds without claiming catalog phase-pick semantics are resolved.
 - Freeze group-disjoint LOSO pilot splits and primary MH preprocessing; block neural training on the coverage-selected background frame.
+- Adopt independent-background v0.1, retire positive-conditioned metrics from decisions, and permit only pilot neural training while final claims remain blocked.
 
 ## Unresolved uncertainties
 
@@ -307,9 +319,9 @@ Exact additional files changed for the all-batch/split/baseline task: `configs/d
 - Batch 1 extreme-value occupancy flags possible constant/saturated/quantized windows but lacks a frozen physical clipping rule; it cannot yet drive exclusion.
 - The 81 nonshallow candidates without complete archive-backed requests remain unavailable and require source-specific review.
 - The catalog start-time physical meaning and absolute time standard remain unresolved even though computational ATT mapping is frozen.
-- Pilot backgrounds come from days selected for positive coverage and cannot support final false-alarm or neural-model claims.
-- The anomalously strong S12 logistic result requires explicit temporal/channel/acquisition shortcut analysis.
+- Independent windows are sampled ten-minute segments rather than fully contiguous trigger evaluation; FP h⁻¹ remains diagnostic.
+- The background-frame sensitivity across S12/S15/S16 requires station-specific error and acquisition-artifact analysis during neural development.
 
 ## Exact next task
 
-Design and checksum-plan an independently selected, storage-bounded continuous-background sample across S12/S14/S15/S16, with predeclared duration and no positive-day conditioning, before any neural training.
+Implement and run the first tiny 1D CNN pilot on frozen LOSO groups and independent-background training/validation windows, without interpreting the held-out results as final paper performance.

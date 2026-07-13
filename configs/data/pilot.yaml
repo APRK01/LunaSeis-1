@@ -47,6 +47,11 @@ negative_sampling:
   exclude_event_buffers: true
   exclude_known_quality_disturbances_when_documented: true
   sample_only_after_split_assignment: true
+  independent_station_days: data/manifests/independent_background_station_days.csv
+  independent_day_quality: data/manifests/independent_background_day_quality.csv
+  independent_windows: data/manifests/independent_background_windows.csv
+  independent_download_plan: data/manifests/independent_background_download_plan.json
+  status: independent_background_v0.1_verified
 
 preprocessing:
   status: primary_mh_v0.1_frozen_for_pilot_baselines

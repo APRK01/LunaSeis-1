@@ -1,0 +1,33 @@
+{
+  "selected_station_days": 928,
+  "archive_complete_station_days": 727,
+  "usable_station_days": 710,
+  "day_integrity_counts": {
+    "usable_integrity": 710,
+    "reject_integrity": 17,
+    "archive_incomplete": 201
+  },
+  "usable_days_by_station": {
+    "S12": 210,
+    "S14": 203,
+    "S15": 164,
+    "S16": 133
+  },
+  "fold_window_rows": 89776,
+  "unique_physical_windows": 22444,
+  "window_counts_by_fold_role": {
+    "holdout_S12|test": 7036,
+    "holdout_S12|train": 12287,
+    "holdout_S12|validation": 3121,
+    "holdout_S14|test": 6530,
+    "holdout_S14|train": 12722,
+    "holdout_S14|validation": 3192,
+    "holdout_S15|test": 4978,
+    "holdout_S15|train": 14043,
+    "holdout_S15|validation": 3423,
+    "holdout_S16|test": 3900,
+    "holdout_S16|train": 14981,
+    "holdout_S16|validation": 3563
+  },
+  "warning": "Catalog-negative does not mean physical noise; windows exclude known catalog times but may contain uncatalogued events or artifacts."
+}

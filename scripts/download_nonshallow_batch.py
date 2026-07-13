@@ -30,6 +30,7 @@ def main() -> None:
     parser.add_argument("--plan", type=Path, default=Path("data/manifests/nonshallow_download_plan.json"))
     parser.add_argument("--destination", type=Path, default=Path("data/raw/apollo_pse_v1.0"))
     parser.add_argument("--receipt-dir", type=Path, default=Path("data/manifests"))
+    parser.add_argument("--receipt-prefix", default="nonshallow_batch")
     parser.add_argument("--workers", type=int, default=4)
     args = parser.parse_args()
     plan = json.loads(args.plan.read_text(encoding="utf-8"))
@@ -49,7 +50,7 @@ def main() -> None:
         "integrity": "exact size and MD5 verified for every batch product",
     }
     args.receipt_dir.mkdir(parents=True, exist_ok=True)
-    receipt_path = args.receipt_dir / f"nonshallow_batch_{args.batch_id}_download_receipt.json"
+    receipt_path = args.receipt_dir / f"{args.receipt_prefix}_{args.batch_id}_download_receipt.json"
     receipt_path.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(receipt, indent=2))
 

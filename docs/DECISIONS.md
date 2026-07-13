@@ -18,5 +18,6 @@
 | 2026-07-13 | 0014 | Attach Batch 2 gap/ATT outcomes and aggregate event usability across audited stations. | A physical event remains usable when another audited station is intact; rejected station evidence must still be preserved. | Accepted Batch 2 result; thresholds provisional |
 | 2026-07-13 | 0015 | Freeze the all-batch ATT mapping and primary integrity thresholds with mandatory sensitivity reporting. | Reproducible slicing is now supported by 6,236 windows, while physical catalog-time semantics remain unresolved. | Accepted pilot policy |
 | 2026-07-13 | 0016 | Freeze leakage-safe pilot splits/preprocessing but block neural training on coverage-selected backgrounds. | Pilot baselines reveal high false alarms and an anomalously strong S12 result requiring shortcut audit. | Accepted training gate |
+| 2026-07-13 | 0017 | Adopt fixed-seed independent archive days, retire positive-conditioned metrics, and permit only pilot neural training. | The independent frame materially reduces S12 performance and confirms background-selection inflation; contiguous scanning is still pending. | Accepted pilot gate; final claims blocked |
 
 Formal records live in `docs/decisions/`.

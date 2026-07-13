@@ -32,7 +32,9 @@ Phase 1 initial scoping completed on 2026-07-13:
 - completed Batches 3 and 4, closing all 15,106 planned products and all 1,159 archive-backed events; final aggregation is 1,146 usable, three questionable, ten rejected-only, and 81 archive-unavailable nonshallow candidates.
 - froze pilot ATT mapping, integrity sensitivities, leakage-safe LOSO assignments, primary MH preprocessing, and catalog-negative candidate construction.
 - ran three classical pilot baselines; high false-alarm rates and an anomalous S12 handcrafted result triggered a neural-training gate pending an independent continuous background frame and shortcut audit.
+- selected 928 official-archive days independently of event dates, verified 1.586 GB of ATT/MH products, retained 710 integrity-usable days, and built 22,444 event-buffered catalog-negative windows.
+- reran all baselines on the independent frame; the S12 result degraded materially, confirming the shortcut concern and opening only pilot neural training while final claims remain blocked.
 
-Phase 1 remains active for an independent continuous-background frame, shortcut audit, exhaustive literature chaining, final continuous-scanning rules, and release/licensing clarification. Neural training remains blocked by Decision 0016.
+Phase 1 remains active for exhaustive literature chaining, final continuous-scanning rules, and release/licensing clarification. Pilot neural development is permitted by Decision 0017; final claims remain blocked.
 
 Later phases: literature/data audit; reproducible preprocessing; baselines; compact neural models; generalization/calibration; continuous scanning/retention simulation; reproduction audit; paper; public release.

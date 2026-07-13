@@ -57,3 +57,9 @@ Contains authoritative code/grade decoding, full and conservative counts, year/s
 - `preprocessing_positive_windows.csv`: primary MH v0.1 positive windows mapped onto nominal MiniSEED time.
 - `results/predictions/pilot_dataset_audit.json`: manifest counts, hashes, fold/role counts, and evaluation-group leakage audit.
 - `results/predictions/pilot_baselines_v0.1.json`: validation-thresholded classical diagnostic results; explicitly not paper results.
+- `independent_background_station_days.csv`: fixed-seed official-archive station/day selections, including unavailable days without replacement.
+- `independent_background_download_plan.json`: exact bytes, URLs, NASA MD5s, channels, and batching for independent ATT/MH products.
+- `independent_background_day_quality.csv`: selected-channel and ATT full-day gap audit for every preselected day.
+- `independent_background_windows.csv`: fold-specific ten-minute catalog-negative windows from usable independent days.
+- `results/predictions/independent_background_audit.json`: day/window counts and integrity summary.
+- `results/predictions/independent_background_baselines_v0.1.json`: classical shortcut-audit results on independent days; still diagnostic rather than final scanning results.

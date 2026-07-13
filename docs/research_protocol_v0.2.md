@@ -10,4 +10,4 @@ Status: frozen for reproducible pilot baselines; final continuous-scanning frame
 - Primary waveform: one of MHZ, MH1, MH2 at 6.625 Hz, preference in that order; 600 s window (−120,+480); sentinel mask preserved; no interpolation; valid-sample median centering.
 - Background terminology: catalog-negative, never physical noise. Exclude ±1 hour around all known catalog times and sample only after fold assignment.
 - Pilot limitation: currently available background days were chosen for positive coverage. Pilot baseline numbers are diagnostic only.
-- Neural training gate: requires an independently selected continuous background frame, a shortcut audit, and frozen continuous-scanning duration/matching rules.
+- Pilot neural training: permitted after independent-background v0.1 and the shortcut audit in Decision 0017. Paper-level evaluation remains blocked until continuous-scanning duration, trigger merging, matching tolerance, and untouched final-test rules are frozen.

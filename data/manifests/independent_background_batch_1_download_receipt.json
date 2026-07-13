@@ -1,0 +1,9 @@
+{
+  "source_plan": "data/manifests/independent_background_download_plan.json",
+  "batch_id": 1,
+  "verified_product_count": 5554,
+  "verified_total_bytes": 1585898632,
+  "downloaded_product_count_this_run": 0,
+  "reused_product_count_this_run": 5554,
+  "integrity": "exact size and MD5 verified for every batch product"
+}

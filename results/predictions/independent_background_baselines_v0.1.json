@@ -1,0 +1,203 @@
+{
+  "status": "independent_background_v0.1_diagnostic",
+  "background_manifest": "data/manifests/independent_background_windows.csv",
+  "background_bias_warning": "fixed-seed archive-day frame independent of catalog dates; sampled 10-minute windows are not yet contiguous scanning",
+  "folds": {
+    "holdout_S12": {
+      "counts": {
+        "train": {
+          "event": 402,
+          "background": 394
+        },
+        "validation": {
+          "event": 57,
+          "background": 55
+        },
+        "test": {
+          "event": 590,
+          "background": 571
+        }
+      },
+      "energy_rms": {
+        "threshold": -1.5501971106191264,
+        "tp": 581,
+        "fp": 511,
+        "fn": 9,
+        "tn": 60,
+        "precision": 0.532051282051282,
+        "recall": 0.9847457627118644,
+        "f1": 0.6908442330558858,
+        "false_positives_per_hour": 5.369527145359019
+      },
+      "sta_lta": {
+        "threshold": 1.803455111862973,
+        "tp": 585,
+        "fp": 536,
+        "fn": 5,
+        "tn": 35,
+        "precision": 0.5218554861730598,
+        "recall": 0.9915254237288136,
+        "f1": 0.6838106370543542,
+        "false_positives_per_hour": 5.632224168126094
+      },
+      "logistic_handcrafted": {
+        "threshold": 0.3073883882492001,
+        "tp": 522,
+        "fp": 202,
+        "fn": 68,
+        "tn": 369,
+        "precision": 0.7209944751381215,
+        "recall": 0.8847457627118644,
+        "f1": 0.7945205479452055,
+        "false_positives_per_hour": 2.1225919439579686
+      }
+    },
+    "holdout_S14": {
+      "counts": {
+        "train": {
+          "event": 178,
+          "background": 177
+        },
+        "validation": {
+          "event": 26,
+          "background": 26
+        },
+        "test": {
+          "event": 745,
+          "background": 719
+        }
+      },
+      "energy_rms": {
+        "threshold": -0.4515848219541583,
+        "tp": 596,
+        "fp": 364,
+        "fn": 149,
+        "tn": 355,
+        "precision": 0.6208333333333333,
+        "recall": 0.8,
+        "f1": 0.6991202346041056,
+        "false_positives_per_hour": 3.0375521557719054
+      },
+      "sta_lta": {
+        "threshold": 2.3193473193402183,
+        "tp": 709,
+        "fp": 636,
+        "fn": 36,
+        "tn": 83,
+        "precision": 0.5271375464684015,
+        "recall": 0.9516778523489933,
+        "f1": 0.6784688995215311,
+        "false_positives_per_hour": 5.307371349095967
+      },
+      "logistic_handcrafted": {
+        "threshold": 0.2853223847216981,
+        "tp": 682,
+        "fp": 354,
+        "fn": 63,
+        "tn": 365,
+        "precision": 0.6583011583011583,
+        "recall": 0.9154362416107382,
+        "f1": 0.7658618753509264,
+        "false_positives_per_hour": 2.9541029207232268
+      }
+    },
+    "holdout_S15": {
+      "counts": {
+        "train": {
+          "event": 421,
+          "background": 412
+        },
+        "validation": {
+          "event": 67,
+          "background": 64
+        },
+        "test": {
+          "event": 451,
+          "background": 446
+        }
+      },
+      "energy_rms": {
+        "threshold": -0.8298693254521567,
+        "tp": 430,
+        "fp": 441,
+        "fn": 21,
+        "tn": 5,
+        "precision": 0.4936854190585534,
+        "recall": 0.9534368070953437,
+        "f1": 0.6505295007564297,
+        "false_positives_per_hour": 5.932735426008969
+      },
+      "sta_lta": {
+        "threshold": 2.3072463768089326,
+        "tp": 404,
+        "fp": 396,
+        "fn": 47,
+        "tn": 50,
+        "precision": 0.505,
+        "recall": 0.8957871396895787,
+        "f1": 0.6458832933653077,
+        "false_positives_per_hour": 5.327354260089686
+      },
+      "logistic_handcrafted": {
+        "threshold": 0.32230130485018066,
+        "tp": 407,
+        "fp": 392,
+        "fn": 44,
+        "tn": 54,
+        "precision": 0.509386733416771,
+        "recall": 0.9024390243902439,
+        "f1": 0.6512000000000001,
+        "false_positives_per_hour": 5.273542600896861
+      }
+    },
+    "holdout_S16": {
+      "counts": {
+        "train": {
+          "event": 453,
+          "background": 444
+        },
+        "validation": {
+          "event": 50,
+          "background": 48
+        },
+        "test": {
+          "event": 470,
+          "background": 452
+        }
+      },
+      "energy_rms": {
+        "threshold": -0.8298693254521567,
+        "tp": 448,
+        "fp": 349,
+        "fn": 22,
+        "tn": 103,
+        "precision": 0.562107904642409,
+        "recall": 0.9531914893617022,
+        "f1": 0.7071823204419888,
+        "false_positives_per_hour": 4.632743362831858
+      },
+      "sta_lta": {
+        "threshold": 2.556848484844414,
+        "tp": 438,
+        "fp": 424,
+        "fn": 32,
+        "tn": 28,
+        "precision": 0.5081206496519721,
+        "recall": 0.9319148936170213,
+        "f1": 0.6576576576576577,
+        "false_positives_per_hour": 5.628318584070797
+      },
+      "logistic_handcrafted": {
+        "threshold": 0.37709912487451797,
+        "tp": 367,
+        "fp": 136,
+        "fn": 103,
+        "tn": 316,
+        "precision": 0.7296222664015904,
+        "recall": 0.7808510638297872,
+        "f1": 0.7543679342240494,
+        "false_positives_per_hour": 1.8053097345132745
+      }
+    }
+  }
+}

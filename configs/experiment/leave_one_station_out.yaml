@@ -26,4 +26,4 @@ status:
   split_assignment: frozen_pilot_v0.1
   exact_window_length_seconds: 600
   event_matching_tolerance: must_be_frozen_before_final_test
-  neural_training: blocked_pending_independent_continuous_background_and_shortcut_audit
+  neural_training: pilot_only_permitted_final_claims_blocked_pending_contiguous_scanning
