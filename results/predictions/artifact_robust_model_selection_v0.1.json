@@ -1,0 +1,279 @@
+{
+  "status": "development_only_model_selection_without_consumed_test_v0.1",
+  "seed": 20260714,
+  "candidates": {
+    "robust_level": {
+      "holdout_S12": {
+        "train_counts": {
+          "event": 402,
+          "independent_background": 394,
+          "continuous_hard_background": 402
+        },
+        "validation_event_count": 57,
+        "validation_event_recall": 0.9122807017543859,
+        "threshold": 0.2759753465652466,
+        "continuous_validation_windows": 21829,
+        "continuous_validation_hours": 498.2833333333333,
+        "merged_false_triggers": 154,
+        "false_triggers_per_hour": 0.3090611098103489,
+        "positive_window_fraction": 0.4540290439323835,
+        "validation_event_pr_auc": 1.0,
+        "history": [
+          0.652337068005612,
+          0.6276179614819979,
+          0.6139581485798484,
+          0.6002260038727208,
+          0.5848368782746164,
+          0.5660735964775085,
+          0.5473212050764185,
+          0.5273772791812295,
+          0.510396725253055,
+          0.49494823186021103,
+          0.4902765546974383,
+          0.46926338421671016
+        ],
+        "checkpoint_sha256": "3083140bea830eea012833cfbdffa3a961d97feb3624b019b442a0ac250d15cd"
+      },
+      "holdout_S14": {
+        "train_counts": {
+          "event": 178,
+          "independent_background": 177,
+          "continuous_hard_background": 178
+        },
+        "validation_event_count": 26,
+        "validation_event_recall": 0.9230769230769231,
+        "threshold": 0.2952440679073334,
+        "continuous_validation_windows": 23983,
+        "continuous_validation_hours": 501.4666666666667,
+        "merged_false_triggers": 201,
+        "false_triggers_per_hour": 0.40082424886998136,
+        "positive_window_fraction": 0.40562064795897096,
+        "validation_event_pr_auc": 1.0,
+        "history": [
+          0.6759039892090691,
+          0.64638794793023,
+          0.6194621788130866,
+          0.6172813243336148,
+          0.6072746581501431,
+          0.5846576425764296,
+          0.5751059916284349,
+          0.5589136282602946,
+          0.5313365956147512,
+          0.5174713797039456,
+          0.49922390116585624,
+          0.4667698277367486
+        ],
+        "checkpoint_sha256": "2d8c663045841a1d93c0bd40c412bf4039d8aa308c9bc5bbeb684550885ad1f2"
+      },
+      "holdout_S15": {
+        "train_counts": {
+          "event": 421,
+          "independent_background": 412,
+          "continuous_hard_background": 421
+        },
+        "validation_event_count": 67,
+        "validation_event_recall": 0.9104477611940298,
+        "threshold": 0.28163206577301025,
+        "continuous_validation_windows": 21512,
+        "continuous_validation_hours": 500.81666666666666,
+        "merged_false_triggers": 254,
+        "false_triggers_per_hour": 0.5071716196878432,
+        "positive_window_fraction": 0.2447936035701004,
+        "validation_event_pr_auc": 1.0,
+        "history": [
+          0.6428156793117523,
+          0.6067912220954895,
+          0.5746473163366318,
+          0.540326064825058,
+          0.5047550931572914,
+          0.46926733255386355,
+          0.43658169731497765,
+          0.4203891634941101,
+          0.39906045794487,
+          0.38438291996717455,
+          0.3855824753642082,
+          0.37344306111335757
+        ],
+        "checkpoint_sha256": "33121d3af262277f35bd8c613c864c79dfa1f79f8d30bc3ea6f978ca33c039b6"
+      },
+      "holdout_S16": {
+        "train_counts": {
+          "event": 452,
+          "independent_background": 444,
+          "continuous_hard_background": 453
+        },
+        "validation_event_count": 50,
+        "validation_event_recall": 0.9,
+        "threshold": 0.24338509142398834,
+        "continuous_validation_windows": 22112,
+        "continuous_validation_hours": 498.2833333333333,
+        "merged_false_triggers": 211,
+        "false_triggers_per_hour": 0.42345385824664683,
+        "positive_window_fraction": 0.28120477568740954,
+        "validation_event_pr_auc": 1.0,
+        "history": [
+          0.6513629636981271,
+          0.6355771612037312,
+          0.6047381677410819,
+          0.5730943314053796,
+          0.5471628511493857,
+          0.5095185109160163,
+          0.4808380149982192,
+          0.47660076889124786,
+          0.4627544432878494,
+          0.4448346929116683,
+          0.4089756350625645,
+          0.41532327234745026
+        ],
+        "checkpoint_sha256": "1f9946b25594ba04a97f730ceda3d9534162053323bee03c2a8cbc40edf88efe"
+      },
+      "aggregate": {
+        "validation_event_recall_mean": 0.9114513465063346,
+        "merged_false_triggers": 820,
+        "continuous_validation_hours": 1998.85,
+        "false_triggers_per_hour": 0.4102358856342397
+      }
+    },
+    "robust_difference": {
+      "holdout_S12": {
+        "train_counts": {
+          "event": 402,
+          "independent_background": 394,
+          "continuous_hard_background": 402
+        },
+        "validation_event_count": 57,
+        "validation_event_recall": 0.9122807017543859,
+        "threshold": 0.24904030561447144,
+        "continuous_validation_windows": 21829,
+        "continuous_validation_hours": 498.2833333333333,
+        "merged_false_triggers": 170,
+        "false_triggers_per_hour": 0.3411713549854501,
+        "positive_window_fraction": 0.4026295295249439,
+        "validation_event_pr_auc": 1.0,
+        "history": [
+          0.6567568747620833,
+          0.6346684788402758,
+          0.6219186720095182,
+          0.6099106198862979,
+          0.5946680652467828,
+          0.5802261452925833,
+          0.5632885757245516,
+          0.5377636316575503,
+          0.5265568981045171,
+          0.5100541459886652,
+          0.49202873361738103,
+          0.4865365404831736
+        ],
+        "checkpoint_sha256": "f2a4836ece2a688f12c9698a381a6062adafb7c611aa0b7839585e7d79c9c887"
+      },
+      "holdout_S14": {
+        "train_counts": {
+          "event": 178,
+          "independent_background": 177,
+          "continuous_hard_background": 178
+        },
+        "validation_event_count": 26,
+        "validation_event_recall": 0.9230769230769231,
+        "threshold": 0.2498677521944046,
+        "continuous_validation_windows": 23983,
+        "continuous_validation_hours": 501.4666666666667,
+        "merged_false_triggers": 342,
+        "false_triggers_per_hour": 0.6819994682265355,
+        "positive_window_fraction": 0.4291373055914606,
+        "validation_event_pr_auc": 1.0,
+        "history": [
+          0.6773634023136563,
+          0.6526386208004422,
+          0.626298209031423,
+          0.6174182163344489,
+          0.6028995580143399,
+          0.5767342448234558,
+          0.5549088286028968,
+          0.5274182756741842,
+          0.4833332531981998,
+          0.46267309453752303,
+          0.44665897885958356,
+          0.39871469802326626
+        ],
+        "checkpoint_sha256": "10a0a96acd25a83a8382db322e4c306b3853de02f7bee713f1778883a5a5dc7f"
+      },
+      "holdout_S15": {
+        "train_counts": {
+          "event": 421,
+          "independent_background": 412,
+          "continuous_hard_background": 421
+        },
+        "validation_event_count": 67,
+        "validation_event_recall": 0.9104477611940298,
+        "threshold": 0.3491032123565674,
+        "continuous_validation_windows": 21512,
+        "continuous_validation_hours": 500.81666666666666,
+        "merged_false_triggers": 151,
+        "false_triggers_per_hour": 0.30150753768844224,
+        "positive_window_fraction": 0.026078467831907773,
+        "validation_event_pr_auc": 1.0,
+        "history": [
+          0.6606202244758606,
+          0.6325244814157486,
+          0.5985684275627137,
+          0.5589242696762085,
+          0.506118893623352,
+          0.4684690356254578,
+          0.4325469292700291,
+          0.4250321060419083,
+          0.40041033178567886,
+          0.38474493771791457,
+          0.3827067516744137,
+          0.3666668727993965
+        ],
+        "checkpoint_sha256": "6a8b11c72b2ca03140da802f91d6438dbc519185a66c2a917ed237deaf199fab"
+      },
+      "holdout_S16": {
+        "train_counts": {
+          "event": 452,
+          "independent_background": 444,
+          "continuous_hard_background": 453
+        },
+        "validation_event_count": 50,
+        "validation_event_recall": 0.9,
+        "threshold": 0.22511562705039978,
+        "continuous_validation_windows": 22112,
+        "continuous_validation_hours": 498.2833333333333,
+        "merged_false_triggers": 260,
+        "false_triggers_per_hour": 0.5217914840953942,
+        "positive_window_fraction": 0.33479558610709115,
+        "validation_event_pr_auc": 1.0,
+        "history": [
+          0.6550178202715787,
+          0.6262162652882662,
+          0.5937469818375327,
+          0.5424185232682661,
+          0.4931658140637658,
+          0.45694082433527167,
+          0.42312144352631137,
+          0.4069764241576195,
+          0.4169908436861905,
+          0.39401178739287634,
+          0.37179750271818857,
+          0.3713570013642311
+        ],
+        "checkpoint_sha256": "662e42c10de5bfcff9b67274026d642d0b1f00d91f2f570d00c8c7bead03bf9c"
+      },
+      "aggregate": {
+        "validation_event_recall_mean": 0.9114513465063346,
+        "merged_false_triggers": 923,
+        "continuous_validation_hours": 1998.85,
+        "false_triggers_per_hour": 0.4617655151712235
+      }
+    }
+  },
+  "folds": {},
+  "selected_candidate": "robust_level",
+  "selection_rule": "lowest merged false triggers per hour after each fold threshold retained at least 90% prior positive-validation event recall; consumed test v0.1 was not read",
+  "selected_checkpoints": {
+    "holdout_S12": "models/checkpoints/artifact_robust_v0.1/robust_level_holdout_S12.pt",
+    "holdout_S14": "models/checkpoints/artifact_robust_v0.1/robust_level_holdout_S14.pt",
+    "holdout_S15": "models/checkpoints/artifact_robust_v0.1/robust_level_holdout_S15.pt",
+    "holdout_S16": "models/checkpoints/artifact_robust_v0.1/robust_level_holdout_S16.pt"
+  }
+}

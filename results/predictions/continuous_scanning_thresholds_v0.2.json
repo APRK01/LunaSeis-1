@@ -1,0 +1,29 @@
+{
+  "status": "frozen_from_v0.1_development_validation_before_v0.2_inference",
+  "folds": {
+    "holdout_S12": {
+      "artifact_robust_cnn": 0.2759753465652466,
+      "original_tiny_cnn": 0.4497147798538208,
+      "logistic_handcrafted": 0.3103397084262529,
+      "sta_lta": 2.3532889874239067
+    },
+    "holdout_S14": {
+      "artifact_robust_cnn": 0.2952440679073334,
+      "original_tiny_cnn": 0.4807552099227905,
+      "logistic_handcrafted": 0.2853223847216981,
+      "sta_lta": 2.3604855898405153
+    },
+    "holdout_S15": {
+      "artifact_robust_cnn": 0.28163206577301025,
+      "original_tiny_cnn": 0.4404523968696594,
+      "logistic_handcrafted": 0.33795168507396117,
+      "sta_lta": 2.3604855898405153
+    },
+    "holdout_S16": {
+      "artifact_robust_cnn": 0.24338509142398834,
+      "original_tiny_cnn": 0.3907981216907501,
+      "logistic_handcrafted": 0.37709912487451797,
+      "sta_lta": 2.5976689976658163
+    }
+  }
+}

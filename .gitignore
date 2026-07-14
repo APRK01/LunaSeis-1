@@ -21,6 +21,8 @@ models/checkpoints/*
 !models/checkpoints/.gitkeep
 !models/checkpoints/tiny_cnn_pilot_v0.1/
 !models/checkpoints/tiny_cnn_pilot_v0.1/*
+!models/checkpoints/artifact_robust_v0.1/
+!models/checkpoints/artifact_robust_v0.1/*
 models/exported/*
 !models/exported/.gitkeep
 results/logs/*

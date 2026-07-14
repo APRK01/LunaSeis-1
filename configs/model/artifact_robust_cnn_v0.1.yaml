@@ -1,0 +1,23 @@
+name: artifact_robust_cnn_v0.1
+status: selected_on_development_validation_before_test_v0.2
+architecture: same_3057_parameter_tiny_cnn_as_v0.1
+input:
+  window_seconds: 600
+  target_samples: 4096
+  channels: [robust_signal, validity_mask]
+preprocessing:
+  center: per_window_valid_sample_median
+  scale: max_of_1_1.4826_times_MAD_and_p90_absolute_deviation_divided_by_2.5
+  clip: [-20, 20]
+  gaps: zero_signal_with_separate_validity_mask
+training:
+  seed: 20260714
+  epochs: 12
+  continuous_hard_negatives: first_half_of_unconsumed_training_station_validation_blocks
+selection:
+  candidates: [robust_level, robust_difference]
+  rule: lowest_merged_false_triggers_per_hour_after_90_percent_positive_validation_recall
+  selected: robust_level
+prohibitions:
+  - consumed_continuous_frame_v0.1_not_read_for_training_or_selection
+  - untouched_continuous_frame_v0.2_not_used_until_candidate_and_thresholds_frozen

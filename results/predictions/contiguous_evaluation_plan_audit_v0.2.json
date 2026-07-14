@@ -1,0 +1,30 @@
+{
+  "status": "post_selection_audit_no_model_scores_read",
+  "selected_station_days": 112,
+  "prior_station_day_overlaps": 0,
+  "catalog_references_in_selected_station_days": 434,
+  "unique_catalog_references": 434,
+  "catalog_references_by_station": {
+    "S12": 56,
+    "S14": 84,
+    "S15": 206,
+    "S16": 88
+  },
+  "eligibility_counts": {
+    "catalog_exclusion_only": 416,
+    "exclude_prior_pilot_exposed": 15,
+    "eligible_pending_waveform_QA": 3
+  },
+  "eligible_candidate_ids": [
+    "levent-10370",
+    "levent-10418",
+    "levent-10779"
+  ],
+  "catalog_audit_csv_sha256": "433af3bf2026b72a69cd008c2f9ce9ec7755f47ebf06a9c86575057845c8b2e2",
+  "rules": [
+    "Every catalog reference is excluded from false-positive accounting within the frozen matching sensitivity windows.",
+    "Any group previously exposed in train, validation, or inspected pilot test outputs cannot contribute to untouched event-recall claims.",
+    "Unexposed candidates remain only prospectively eligible until downloaded waveform integrity and station visibility are audited.",
+    "Selection is not changed after this catalog audit."
+  ]
+}

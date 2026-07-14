@@ -1,0 +1,22 @@
+name: continuous_scanning_v0.2
+status: completed_consumed_no_retuning
+scope: final_pilot_operational_comparison_not_stable_paper_benchmark
+selection_seed: lunaseis-contiguous-evaluation-v0.2
+frame:
+  station_days: 112
+  products: 448
+  bytes: 171072240
+  qualified_windows: 157363
+  union_seconds: 9545040
+  union_hours: 2651.4
+  integrity_eligible_events: 3
+protocol:
+  window_seconds: 600
+  stride_seconds: 60
+  inferred_reference_offset_seconds: 120
+  trigger_merge_seconds: 300
+  primary_match_tolerance_seconds: 180
+  sensitivity_match_tolerances_seconds: [60, 300]
+  gap_fraction_maximum: 0.2
+result: results/predictions/continuous_scanning_results_v0.2.json
+future_tuning_on_this_frame: prohibited

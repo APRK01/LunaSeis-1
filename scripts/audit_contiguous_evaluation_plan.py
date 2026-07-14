@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import csv
 import hashlib
 import json
@@ -17,7 +18,12 @@ def calendar_time(year: int, doy: int, clock: str) -> datetime:
 
 
 def main() -> None:
-    days=list(csv.DictReader(Path("data/manifests/contiguous_evaluation_station_days.csv").open(newline="")))
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--days",type=Path,default=Path("data/manifests/contiguous_evaluation_station_days.csv"))
+    parser.add_argument("--catalog-output",type=Path,default=Path("data/manifests/contiguous_evaluation_catalog_audit.csv"))
+    parser.add_argument("--summary-output",type=Path,default=Path("results/predictions/contiguous_evaluation_plan_audit.json"))
+    args=parser.parse_args()
+    days=list(csv.DictReader(args.days.open(newline="")))
     selected={(row["station"],datetime(int(row["year"]),1,1).date()+timedelta(days=int(row["doy"])-1)):row["block_id"] for row in days}
     unified=list(csv.DictReader(Path("data/manifests/unified_positive_events.csv").open(newline="")))
     candidates_by_minute=defaultdict(list)
@@ -41,12 +47,12 @@ def main() -> None:
             fold_roles=roles.get((fold,group),set()) if group else set()
             exposed=bool(fold_roles)
             output.append({"station":station,"block_id":block,"catalog_source":source,"source_event_id":source_id,"reference_time":reference.isoformat(),"unified_candidate_id":candidate["event_id"] if candidate else "","event_class":candidate["event_class"] if candidate else "","evaluation_group":group,"existing_fold_roles":";".join(sorted(fold_roles)),"prior_pilot_fold_exposed":int(exposed),"prospective_event_recall_eligibility":"eligible_pending_waveform_QA" if candidate and not exposed else "exclude_prior_pilot_exposed" if exposed else "catalog_exclusion_only"})
-    path=Path("data/manifests/contiguous_evaluation_catalog_audit.csv")
+    path=args.catalog_output
     with path.open("w",newline="") as stream:
         writer=csv.DictWriter(stream,fieldnames=list(output[0]),lineterminator="\n");writer.writeheader();writer.writerows(output)
     eligibility=Counter(row["prospective_event_recall_eligibility"] for row in output)
     summary={"status":"post_selection_audit_no_model_scores_read","selected_station_days":len(days),"prior_station_day_overlaps":sum(int(row["prior_station_day_overlap"]) for row in days),"catalog_references_in_selected_station_days":len(output),"unique_catalog_references":len({(row["catalog_source"],row["source_event_id"]) for row in output}),"catalog_references_by_station":dict(Counter(row["station"] for row in output)),"eligibility_counts":dict(eligibility),"eligible_candidate_ids":sorted({row["unified_candidate_id"] for row in output if row["prospective_event_recall_eligibility"]=="eligible_pending_waveform_QA"}),"catalog_audit_csv_sha256":hashlib.sha256(path.read_bytes()).hexdigest(),"rules":["Every catalog reference is excluded from false-positive accounting within the frozen matching sensitivity windows.","Any group previously exposed in train, validation, or inspected pilot test outputs cannot contribute to untouched event-recall claims.","Unexposed candidates remain only prospectively eligible until downloaded waveform integrity and station visibility are audited.","Selection is not changed after this catalog audit."]}
-    Path("results/predictions/contiguous_evaluation_plan_audit.json").write_text(json.dumps(summary,indent=2)+"\n");print(json.dumps(summary,indent=2))
+    args.summary_output.write_text(json.dumps(summary,indent=2)+"\n");print(json.dumps(summary,indent=2))
 
 
 if __name__=="__main__":main()

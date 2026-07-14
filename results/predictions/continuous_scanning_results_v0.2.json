@@ -1,0 +1,266 @@
+{
+  "status": "frozen_untouched_contiguous_scan_v0.2_final_pilot_comparison",
+  "eligible_event_count": 3,
+  "scannable_union_hours": 2651.4,
+  "models": {
+    "artifact_robust_cnn": {
+      "trigger_count": 869,
+      "retained_union_seconds": 4350360,
+      "retained_fraction_of_scannable_duration": 0.45577179351788993,
+      "matching_sensitivities": {
+        "60": {
+          "eligible_true_triggers": 0,
+          "matched_eligible_candidate_ids": [],
+          "false_triggers": 861,
+          "protected_catalog_triggers": 8,
+          "latencies_seconds": [],
+          "eligible_event_recall": 0.0,
+          "precision_excluding_protected_catalog_triggers": 0.0,
+          "f1": 0.0,
+          "false_triggers_per_hour": 0.32473410273817604,
+          "false_triggers_per_day": 7.793618465716225,
+          "median_latency_seconds": null
+        },
+        "180": {
+          "eligible_true_triggers": 0,
+          "matched_eligible_candidate_ids": [],
+          "false_triggers": 847,
+          "protected_catalog_triggers": 22,
+          "latencies_seconds": [],
+          "eligible_event_recall": 0.0,
+          "precision_excluding_protected_catalog_triggers": 0.0,
+          "f1": 0.0,
+          "false_triggers_per_hour": 0.3194538734253602,
+          "false_triggers_per_day": 7.666892962208644,
+          "median_latency_seconds": null
+        },
+        "300": {
+          "eligible_true_triggers": 0,
+          "matched_eligible_candidate_ids": [],
+          "false_triggers": 841,
+          "protected_catalog_triggers": 28,
+          "latencies_seconds": [],
+          "eligible_event_recall": 0.0,
+          "precision_excluding_protected_catalog_triggers": 0.0,
+          "f1": 0.0,
+          "false_triggers_per_hour": 0.31719091800558197,
+          "false_triggers_per_day": 7.612582032133966,
+          "median_latency_seconds": null
+        }
+      },
+      "primary_180s_by_station": {
+        "S12": {
+          "false_triggers": 381,
+          "scan_hours": 664.3166666666667
+        },
+        "S14": {
+          "false_triggers": 406,
+          "scan_hours": 664.6833333333333
+        },
+        "S15": {
+          "false_triggers": 44,
+          "scan_hours": 667.5833333333334
+        },
+        "S16": {
+          "false_triggers": 16,
+          "scan_hours": 654.8166666666667
+        }
+      }
+    },
+    "original_tiny_cnn": {
+      "trigger_count": 2488,
+      "retained_union_seconds": 5964120,
+      "retained_fraction_of_scannable_duration": 0.6248397073244324,
+      "matching_sensitivities": {
+        "60": {
+          "eligible_true_triggers": 0,
+          "matched_eligible_candidate_ids": [],
+          "false_triggers": 2472,
+          "protected_catalog_triggers": 16,
+          "latencies_seconds": [],
+          "eligible_event_recall": 0.0,
+          "precision_excluding_protected_catalog_triggers": 0.0,
+          "f1": 0.0,
+          "false_triggers_per_hour": 0.9323376329486309,
+          "false_triggers_per_day": 22.37610319076714,
+          "median_latency_seconds": null
+        },
+        "180": {
+          "eligible_true_triggers": 0,
+          "matched_eligible_candidate_ids": [],
+          "false_triggers": 2448,
+          "protected_catalog_triggers": 40,
+          "latencies_seconds": [],
+          "eligible_event_recall": 0.0,
+          "precision_excluding_protected_catalog_triggers": 0.0,
+          "f1": 0.0,
+          "false_triggers_per_hour": 0.9232858112695179,
+          "false_triggers_per_day": 22.15885947046843,
+          "median_latency_seconds": null
+        },
+        "300": {
+          "eligible_true_triggers": 0,
+          "matched_eligible_candidate_ids": [],
+          "false_triggers": 2426,
+          "protected_catalog_triggers": 62,
+          "latencies_seconds": [],
+          "eligible_event_recall": 0.0,
+          "precision_excluding_protected_catalog_triggers": 0.0,
+          "f1": 0.0,
+          "false_triggers_per_hour": 0.9149883080636645,
+          "false_triggers_per_day": 21.959719393527944,
+          "median_latency_seconds": null
+        }
+      },
+      "primary_180s_by_station": {
+        "S12": {
+          "false_triggers": 1144,
+          "scan_hours": 664.3166666666667
+        },
+        "S14": {
+          "false_triggers": 370,
+          "scan_hours": 664.6833333333333
+        },
+        "S15": {
+          "false_triggers": 646,
+          "scan_hours": 667.5833333333334
+        },
+        "S16": {
+          "false_triggers": 288,
+          "scan_hours": 654.8166666666667
+        }
+      }
+    },
+    "logistic_handcrafted": {
+      "trigger_count": 517,
+      "retained_union_seconds": 3361800,
+      "retained_fraction_of_scannable_duration": 0.3522038671393729,
+      "matching_sensitivities": {
+        "60": {
+          "eligible_true_triggers": 0,
+          "matched_eligible_candidate_ids": [],
+          "false_triggers": 504,
+          "protected_catalog_triggers": 13,
+          "latencies_seconds": [],
+          "eligible_event_recall": 0.0,
+          "precision_excluding_protected_catalog_triggers": 0.0,
+          "f1": 0.0,
+          "false_triggers_per_hour": 0.19008825526137135,
+          "false_triggers_per_day": 4.562118126272912,
+          "median_latency_seconds": null
+        },
+        "180": {
+          "eligible_true_triggers": 0,
+          "matched_eligible_candidate_ids": [],
+          "false_triggers": 490,
+          "protected_catalog_triggers": 27,
+          "latencies_seconds": [],
+          "eligible_event_recall": 0.0,
+          "precision_excluding_protected_catalog_triggers": 0.0,
+          "f1": 0.0,
+          "false_triggers_per_hour": 0.18480802594855547,
+          "false_triggers_per_day": 4.435392622765331,
+          "median_latency_seconds": null
+        },
+        "300": {
+          "eligible_true_triggers": 0,
+          "matched_eligible_candidate_ids": [],
+          "false_triggers": 483,
+          "protected_catalog_triggers": 34,
+          "latencies_seconds": [],
+          "eligible_event_recall": 0.0,
+          "precision_excluding_protected_catalog_triggers": 0.0,
+          "f1": 0.0,
+          "false_triggers_per_hour": 0.18216791129214754,
+          "false_triggers_per_day": 4.372029871011541,
+          "median_latency_seconds": null
+        }
+      },
+      "primary_180s_by_station": {
+        "S12": {
+          "false_triggers": 243,
+          "scan_hours": 664.3166666666667
+        },
+        "S14": {
+          "false_triggers": 184,
+          "scan_hours": 664.6833333333333
+        },
+        "S15": {
+          "false_triggers": 47,
+          "scan_hours": 667.5833333333334
+        },
+        "S16": {
+          "false_triggers": 16,
+          "scan_hours": 654.8166666666667
+        }
+      }
+    },
+    "sta_lta": {
+      "trigger_count": 561,
+      "retained_union_seconds": 9210480,
+      "retained_fraction_of_scannable_duration": 0.9649493349425461,
+      "matching_sensitivities": {
+        "60": {
+          "eligible_true_triggers": 0,
+          "matched_eligible_candidate_ids": [],
+          "false_triggers": 553,
+          "protected_catalog_triggers": 8,
+          "latencies_seconds": [],
+          "eligible_event_recall": 0.0,
+          "precision_excluding_protected_catalog_triggers": 0.0,
+          "f1": 0.0,
+          "false_triggers_per_hour": 0.2085690578562269,
+          "false_triggers_per_day": 5.005657388549445,
+          "median_latency_seconds": null
+        },
+        "180": {
+          "eligible_true_triggers": 0,
+          "matched_eligible_candidate_ids": [],
+          "false_triggers": 543,
+          "protected_catalog_triggers": 18,
+          "latencies_seconds": [],
+          "eligible_event_recall": 0.0,
+          "precision_excluding_protected_catalog_triggers": 0.0,
+          "f1": 0.0,
+          "false_triggers_per_hour": 0.20479746548992983,
+          "false_triggers_per_day": 4.915139171758316,
+          "median_latency_seconds": null
+        },
+        "300": {
+          "eligible_true_triggers": 0,
+          "matched_eligible_candidate_ids": [],
+          "false_triggers": 540,
+          "protected_catalog_triggers": 21,
+          "latencies_seconds": [],
+          "eligible_event_recall": 0.0,
+          "precision_excluding_protected_catalog_triggers": 0.0,
+          "f1": 0.0,
+          "false_triggers_per_hour": 0.20366598778004072,
+          "false_triggers_per_day": 4.887983706720977,
+          "median_latency_seconds": null
+        }
+      },
+      "primary_180s_by_station": {
+        "S12": {
+          "false_triggers": 159,
+          "scan_hours": 664.3166666666667
+        },
+        "S14": {
+          "false_triggers": 237,
+          "scan_hours": 664.6833333333333
+        },
+        "S15": {
+          "false_triggers": 63,
+          "scan_hours": 667.5833333333334
+        },
+        "S16": {
+          "false_triggers": 84,
+          "scan_hours": 654.8166666666667
+        }
+      }
+    }
+  },
+  "window_score_sha256": "4591801138f6b438f003e42c8919459dc9537aeab74fbe8af8f6d934bbec170b",
+  "trigger_csv_sha256": "f26b266a98c8919177d7f9103955f6866533957b4eb237a7c52f5639e850625c",
+  "threshold_json_sha256": "50203b3318117f7df6b3caf0e731e5aafc7747704665c3bfd2a3030a75c9de26"
+}

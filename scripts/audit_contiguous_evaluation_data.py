@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import csv
 import hashlib
 import json
@@ -50,8 +51,16 @@ def merged_duration_seconds(starts: list[int], window_seconds: int = 600) -> int
 
 
 def main() -> None:
-    plan=json.loads(Path("data/manifests/contiguous_evaluation_download_plan.json").read_text())
-    days=list(csv.DictReader(Path("data/manifests/contiguous_evaluation_station_days.csv").open(newline="")))
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--plan",type=Path,default=Path("data/manifests/contiguous_evaluation_download_plan.json"))
+    parser.add_argument("--days",type=Path,default=Path("data/manifests/contiguous_evaluation_station_days.csv"))
+    parser.add_argument("--catalog",type=Path,default=Path("data/manifests/contiguous_evaluation_catalog_audit.csv"))
+    parser.add_argument("--day-output",type=Path,default=Path("data/manifests/contiguous_evaluation_day_quality.csv"))
+    parser.add_argument("--event-output",type=Path,default=Path("data/manifests/contiguous_evaluation_eligible_event_quality.csv"))
+    parser.add_argument("--summary-output",type=Path,default=Path("results/predictions/contiguous_evaluation_integrity_summary.json"))
+    parser.add_argument("--figure-output",type=Path,default=Path("results/figures/contiguous_evaluation_eligible_events.png"))
+    args=parser.parse_args();plan=json.loads(args.plan.read_text())
+    days=list(csv.DictReader(args.days.open(newline="")))
     products=defaultdict(list)
     for row in plan["products"]:
         path=Path(row["path"]);products[(path.parts[-4].upper(),int(path.parts[-3]),int(path.parts[-2]))].append(row)
@@ -71,11 +80,11 @@ def main() -> None:
         duration=merged_duration_seconds(starts);scannable_seconds+=duration
         day_rows.append({**row,"att_sample_rate_hz":float(att.stats.sampling_rate),"waveform_sample_rate_hz":float(wave.stats.sampling_rate),"att_trace_start":str(att.stats.starttime),"att_trace_end":str(att.stats.endtime),"waveform_trace_start":str(wave.stats.starttime),"waveform_trace_end":str(wave.stats.endtime),"att_gap_fraction":att_stats["gap_fraction"],"att_longest_gap_seconds":att_stats["longest_gap_samples"]/float(att.stats.sampling_rate),"waveform_gap_fraction":wave_stats["gap_fraction"],"waveform_longest_gap_seconds":wave_stats["longest_gap_samples"]/float(wave.stats.sampling_rate),"day_integrity_status":status,"candidate_scan_window_count":1431,"passing_scan_window_count":len(starts),"scannable_union_seconds":duration})
         print(f"[{number}/{len(days)}] audited {key[0]} {key[1]}-{key[2]:03d} {status}",flush=True)
-    day_path=Path("data/manifests/contiguous_evaluation_day_quality.csv")
+    day_path=args.day_output
     with day_path.open("w",newline="") as stream:
         writer=csv.DictWriter(stream,fieldnames=list(day_rows[0]),lineterminator="\n");writer.writeheader();writer.writerows(day_rows)
 
-    eligible=[row for row in csv.DictReader(Path("data/manifests/contiguous_evaluation_catalog_audit.csv").open(newline="")) if row["prospective_event_recall_eligibility"]=="eligible_pending_waveform_QA"]
+    eligible=[row for row in csv.DictReader(args.catalog.open(newline="")) if row["prospective_event_recall_eligibility"]=="eligible_pending_waveform_QA"]
     event_rows=[];plot_data=[]
     for row in eligible:
         target=UTCDateTime(row["reference_time"]+"Z");key=(row["station"],target.year,target.julday);att,wave=traces[key]
@@ -87,17 +96,17 @@ def main() -> None:
         support="not_quantifiable" if ratio is None else "strong_ratio" if ratio>=2 else "weak_ratio" if ratio>=1.2 else "no_clear_ratio"
         event_rows.append({**row,"nearest_att_minus_reference_seconds":mapping["att_minus_target_seconds"],"nominal_minus_reference_seconds":mapping["nominal_minus_target_seconds"],"waveform_sample_rate_hz":float(wave.stats.sampling_rate),"waveform_gap_fraction":gaps["gap_fraction"],"waveform_longest_gap_seconds":gaps["longest_gap_samples"]/float(wave.stats.sampling_rate),"att_window_gap_fraction":att_gaps["gap_fraction"],"pre_reference_rms":pre,"post_reference_rms":post,"post_to_pre_rms_ratio":ratio if ratio is not None else "","signal_support_descriptive":support,"event_window_integrity_status":status})
         values=window.astype(float);values[values==-1]=np.nan;seconds=np.arange(len(values))/float(wave.stats.sampling_rate)-120;plot_data.append((row,seconds,values,mapping["nominal_minus_target_seconds"]))
-    event_path=Path("data/manifests/contiguous_evaluation_eligible_event_quality.csv")
+    event_path=args.event_output
     with event_path.open("w",newline="") as stream:
         writer=csv.DictWriter(stream,fieldnames=list(event_rows[0]),lineterminator="\n");writer.writeheader();writer.writerows(event_rows)
     fig,axes=plt.subplots(len(plot_data),1,figsize=(12,2.0*len(plot_data)),sharex=True)
     for axis,(row,seconds,values,offset) in zip(axes,plot_data):
         axis.plot(seconds,values,color="#17324d",linewidth=.55,rasterized=True);axis.axvline(0,color="#d1495b",linewidth=1,label="catalog reference");axis.axvline(float(offset),color="#e9a23b",linewidth=1,label="ATT-mapped nominal")
         axis.set_ylabel(f"{row['station']}\ncounts");axis.set_title(f"{row['unified_candidate_id']} — {row['event_class']}",loc="left",fontsize=9);axis.spines[["top","right"]].set_visible(False)
-    axes[-1].set_xlabel("Seconds relative to catalog reference");axes[0].legend(frameon=False,fontsize=8,ncol=2);fig.suptitle("Untouched candidate windows: raw MH, no model inference");fig.tight_layout();figure=Path("results/figures/contiguous_evaluation_eligible_events.png");fig.savefig(figure,dpi=180);plt.close(fig)
+    axes[-1].set_xlabel("Seconds relative to catalog reference");axes[0].legend(frameon=False,fontsize=8,ncol=2);fig.suptitle("Untouched candidate windows: raw MH, no model inference");fig.tight_layout();fig.savefig(args.figure_output,dpi=180);plt.close(fig)
     counts=Counter(row["day_integrity_status"] for row in day_rows);event_counts=Counter(row["event_window_integrity_status"] for row in event_rows);support=Counter(row["signal_support_descriptive"] for row in event_rows)
     summary={"status":"integrity_audited_no_model_inference","verified_product_count":plan["product_count"],"verified_total_bytes":plan["total_bytes"],"selected_station_days":len(day_rows),"day_integrity_counts":dict(counts),"day_integrity_by_station":{"|".join(key):value for key,value in sorted(Counter((row["station"],row["day_integrity_status"]) for row in day_rows).items())},"candidate_scan_windows":total_windows,"passing_scan_windows":passing_windows,"scannable_union_seconds":scannable_seconds,"scannable_union_hours":scannable_seconds/3600,"eligible_event_count":len(event_rows),"eligible_event_integrity_counts":dict(event_counts),"eligible_event_signal_support_descriptive":dict(support),"day_quality_sha256":hashlib.sha256(day_path.read_bytes()).hexdigest(),"eligible_event_quality_sha256":hashlib.sha256(event_path.read_bytes()).hexdigest(),"warning":"Signal ratios are descriptive and do not change catalog labels or integrity. No model was loaded or scored."}
-    Path("results/predictions/contiguous_evaluation_integrity_summary.json").write_text(json.dumps(summary,indent=2)+"\n");print(json.dumps(summary,indent=2))
+    args.summary_output.write_text(json.dumps(summary,indent=2)+"\n");print(json.dumps(summary,indent=2))
 
 
 if __name__=="__main__":main()

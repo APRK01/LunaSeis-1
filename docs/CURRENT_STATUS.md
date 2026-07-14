@@ -4,7 +4,7 @@ Last updated: 2026-07-14 (Asia/Kolkata)
 
 ## State
 
-Phase 0 feasibility is achieved and Phase 1 is active. The first frozen untouched continuous scan is complete and negative. Tiny CNN, logistic, and STA/LTA recall 1/6, 1/6, and 0/6 eligible events at ±180 seconds with 2,932, 313, and 732 false triggers over 2,591.47 station-hours. Retention is 75.5%, 40.3%, and 97.9%. Decision 0021 rejects H1 for this pilot and prohibits retuning on the consumed frame. Paper claims remain blocked.
+Phase 0 feasibility is achieved and the planned binary-detection experiment cycle is complete as a negative study. Continuous development data selected robust-level preprocessing without reading test v0.1 or v0.2. On frozen test v0.2, robust CNN/original CNN/logistic/STA-LTA recall 0/3 events with 847/2,448/490/543 false triggers over 2,651.4 station-hours. Robust CNN improves materially over the original CNN but remains worse than logistic regression. Both untouched frames are consumed; H1 and H6 are unsupported under the tested protocol and paper claims remain blocked pending framing/reproducibility work.
 
 ## Completed
 
@@ -123,6 +123,14 @@ Phase 0 feasibility is achieved and Phase 1 is active. The first frozen untouche
 - Found severe cross-station threshold shift: CNN and logistic mark essentially 100% of S14 windows positive, while STA/LTA marks 85.8–99.9% positive across stations.
 - Visually reviewed the highest-scoring false cases; large steps, ringing, plateau/saturation-like behavior, impulses, and high-frequency texture dominate.
 - Accepted continuous scan v0.1 as a preserved negative result, rejected H1 for this pilot, and prohibited all future tuning on this consumed frame.
+- Selected and checksum-verified a development-only continuous frame of 56 previously unexposed station-days, 224 products, and 84,837,751 bytes.
+- Audited 57,823 catalog-buffered development windows spanning 993.85 physical station-hours and quantified severe station-specific plateau, step, and extreme-value proxy shift.
+- Implemented per-window robust-level and robust-difference preprocessing with a validity mask, clipping, deterministic hard-negative selection, and training-station-only continuous validation.
+- Trained both candidates across four LOSO folds; both retained 0.9115 mean positive-validation recall, while robust level produced 820 versus 923 merged triggers over 1,998.85 fold-hours and was frozen before test v0.2.
+- Selected test v0.2 only after model/threshold freeze: 112 days with zero prior-manifest overlap, 448 products, and 171,072,240 checksum-verified bytes.
+- Audited test v0.2 before inference: 157,363 qualified windows, 9,545,040 union seconds, 2,651.4 station-hours, and three integrity-usable prior-unexposed events.
+- Ran the frozen v0.2 comparison once. Robust CNN/original CNN/logistic/STA-LTA produced 847/2,448/490/543 false triggers, 0.3195/0.9233/0.1848/0.2048 FP/hour, and retained 45.58%/62.48%/35.22%/96.49% of duration.
+- Preserved the 0/3 recall for every method without threshold changes; rejected operational-success and retention claims and consumed test v0.2 permanently.
 
 ## Files changed
 
@@ -261,8 +269,15 @@ Exact files changed for contiguous-frame download and integrity QA: `configs/eva
 
 Exact files changed for continuous scanning v0.1: `configs/evaluation/continuous_scanning_v0.1.yaml`, `docs/CURRENT_STATUS.md`, `docs/DECISIONS.md`, `docs/ROADMAP.md`, `docs/data_dictionary.md`, `docs/continuous_scanning_result_v0.1.md`, `docs/decisions/0021-continuous-scan-negative-result.md`, `results/figures/continuous_scanning_results_v0.1.png`, `results/figures/continuous_scanning_top_false_triggers_v0.1.png`, `results/predictions/continuous_scanning_thresholds_v0.1.json`, `results/predictions/continuous_scanning_window_scores_v0.1.csv.gz`, `results/predictions/continuous_scanning_triggers_v0.1.csv`, `results/predictions/continuous_scanning_results_v0.1.json`, `results/predictions/continuous_scanning_error_audit_v0.1.json`, `scripts/run_contiguous_scanning_v0_1.py`, `scripts/audit_continuous_scanning_errors.py`, `tests/test_run_contiguous_scanning_v0_1.py`, and `tests/test_audit_continuous_scanning_errors.py`.
 
+Exact files changed for artifact-robust development and test v0.2: `configs/model/artifact_robust_cnn_v0.1.yaml`, `configs/evaluation/continuous_scanning_v0.2.yaml`, `data/manifests/continuous_validation_*_v0.1.*`, `data/manifests/contiguous_evaluation_*_v0.2.*`, `models/checkpoints/artifact_robust_v0.1/*.pt`, `results/predictions/continuous_validation_audit_v0.1.json`, `results/predictions/artifact_robust_model_selection_v0.1.json`, `results/predictions/contiguous_evaluation_*_v0.2.json`, `results/predictions/continuous_scanning_*_v0.2.*`, `results/figures/continuous_validation_shift_v0.1.png`, `results/figures/contiguous_evaluation_eligible_events_v0.2.png`, `results/figures/continuous_scanning_results_v0.2.png`, `scripts/build_contiguous_evaluation_plan.py`, `scripts/audit_contiguous_evaluation_plan.py`, `scripts/audit_contiguous_evaluation_data.py`, `scripts/audit_continuous_validation.py`, `scripts/train_artifact_robust_models.py`, `scripts/run_contiguous_scanning_v0_2.py`, `docs/artifact_robust_continuous_validation_and_v0.2.md`, `docs/decisions/0022-artifact-robust-development-selection.md`, `docs/decisions/0023-continuous-scan-v0.2-negative-result.md`, and permanent context documents. Raw NASA products remain ignored.
+
 ## Commands and verification
 
+- Generalized contiguous selection/audit scripts to named frames, then asserted that validation and test v0.2 have zero overlap with every earlier manifest.
+- Ran checksum-gated downloads for all 224 validation and 448 test-v0.2 products; exact byte totals reconciled to 84,837,751 and 171,072,240.
+- Ran continuous validation QA, both four-fold robust candidate training/selection passes, test-v0.2 day/event QA, and the frozen four-method operational comparison.
+- Visually inspected the station-shift, eligible-event, and final v0.2 comparison figures; verified primary trigger accounting, duration denominators, retention bounds, file hashes, and the three-event numerator.
+- Re-ran both checksum downloaders in disk-only mode (224/224 and 448/448 reused and reverified), ran all 53 tests, script compilation, YAML parsing, exact dependency-lock set comparison, cross-frame disjointness, result/hash invariants, and `git diff --check`; all passed.
 - Reconstructed validation-only thresholds, ran all three methods over 152,986 untouched windows, generated compressed per-window predictions, merged triggers, matched catalogs at three frozen tolerances, computed retention, and ran post-result error analysis without retuning.
 - Repeated the complete scanner after deterministic-gzip hardening and confirmed byte-identical prediction, trigger, and threshold hashes; ran the full 50-test regression suite, compilation, YAML parsing, dependency-lock set comparison, artifact/count/rate/hash invariants, and `git diff --check` successfully.
 - Visually inspected the continuous-result figure and nine highest-scoring false-trigger waveforms; independently verified score/trigger counts, hashes, false-rate denominators, eligible-event numerators, station totals, sensitivity monotonicity, and retention bounds.
@@ -358,6 +373,8 @@ Exact files changed for continuous scanning v0.1: `configs/evaluation/continuous
 - Accept the fixed 112-day frame without replacement, authorize only its checksum-gated 163.4 MiB download, and keep model scoring blocked until full-day integrity QA.
 - Freeze 152,986 local-gap-qualified windows and 2,591.47 union hours; exclude one severe-gap event and authorize continuous inference for six integrity-eligible events.
 - Accept continuous scan v0.1 as a negative result, reject H1 for this pilot, and prohibit tuning thresholds/models against the consumed untouched frame.
+- Select robust-level preprocessing on unconsumed training-station continuous validation and freeze it before test v0.2.
+- Preserve test v0.2 as a second negative result; consume it permanently and treat H1/H6 as unsupported under the tested protocol.
 
 ## Unresolved uncertainties
 
@@ -388,7 +405,11 @@ Exact files changed for continuous scanning v0.1: `configs/evaluation/continuous
 - The single CNN/logistic matched event may be coincidental given the false-trigger burden.
 - Top false triggers contain strong acquisition/instrument artifacts, but their physical causes have not been authoritatively classified.
 - Continuous frame v0.1 is consumed and cannot serve as an untouched test after model changes.
+- Artifact proxies expose severe station differences but do not establish the physical cause of plateaus, steps, or extreme values.
+- Test v0.2 contains only three eligible events, so 0/3 recall is highly uncertain even though the false-trigger exposure is long.
+- Robust preprocessing improves the CNN relative to its original version but still fails to beat logistic regression operationally.
+- Both continuous frames are consumed; additional detector optimization would require a new preregistered design and new untouched data.
 
 ## Exact next task
 
-Construct separate training-station continuous-validation manifests from unconsumed archive days, then diagnose station normalization and artifact-robust preprocessing there without reading or retuning on consumed continuous frame v0.1.
+Freeze the negative-study paper scope and complete the literature/claim audit before deciding whether calibration remains scientifically meaningful for a detector with zero event recall on test v0.2.

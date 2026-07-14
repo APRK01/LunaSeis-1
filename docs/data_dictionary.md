@@ -81,3 +81,11 @@ Contains authoritative code/grade decoding, full and conservative counts, year/s
 - `results/predictions/continuous_scanning_triggers_v0.1.csv`: all primary ±180-second merged triggers and one-to-one match outcomes.
 - `results/predictions/continuous_scanning_results_v0.1.json`: primary and ±60/±300 sensitivity metrics, station results, retention, and artifact hashes.
 - `results/predictions/continuous_scanning_error_audit_v0.1.json`: positive-window fractions, gap correlations, block concentrations, run sizes, and top false triggers.
+- `continuous_validation_station_days_v0.1.csv`: 56 fixed-seed development-only station-days excluded from both test frames.
+- `continuous_validation_download_plan_v0.1.json` and `continuous_validation_download_receipt_v0.1.json`: NASA-MD5-backed development-frame plan and verified receipt.
+- `continuous_validation_day_quality_v0.1.csv` and `continuous_validation_windows_v0.1.csv.gz`: integrity results and artifact-proxy features for development-only windows.
+- `results/predictions/artifact_robust_model_selection_v0.1.json`: robust-level versus robust-difference selection evidence using training-station development data only.
+- `models/checkpoints/artifact_robust_v0.1/`: per-fold development checkpoints; robust-level checkpoints are selected for test v0.2.
+- `contiguous_evaluation_*_v0.2.*`: second untouched frame selection, checksums, catalog audit, integrity QA, and eligible-event evidence.
+- `results/predictions/continuous_scanning_window_scores_v0.2.csv.gz`: all four frozen model scores for 157,363 qualified test-v0.2 windows.
+- `results/predictions/continuous_scanning_triggers_v0.2.csv` and `continuous_scanning_results_v0.2.json`: merged triggers and final operational comparison.

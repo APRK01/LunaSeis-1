@@ -1,0 +1,192 @@
+{
+  "status": "development_only_unconsumed_continuous_validation",
+  "station_days": 56,
+  "window_count": 57823,
+  "scannable_union_seconds": 3577860,
+  "scannable_union_hours": 993.85,
+  "day_status_counts": {
+    "usable_integrity": 55,
+    "questionable_integrity": 1
+  },
+  "windows_by_station": {
+    "S12": 14834,
+    "S14": 11604,
+    "S15": 14888,
+    "S16": 16497
+  },
+  "feature_summary_by_station": {
+    "S12": {
+      "median": {
+        "median": 519.0,
+        "p95": 524.0,
+        "p99": 524.0
+      },
+      "mad": {
+        "median": 1e-09,
+        "p95": 1.000000001,
+        "p99": 1.000000001
+      },
+      "rms": {
+        "median": 0.5248539778959549,
+        "p95": 0.9028257526359345,
+        "p99": 8.423406875503638
+      },
+      "peak_over_mad": {
+        "median": 999999999.9999999,
+        "p95": 3999999999.9999995,
+        "p99": 14670000000.000072
+      },
+      "max_step_over_mad": {
+        "median": 999999999.9999999,
+        "p95": 1999999999.9999998,
+        "p99": 5000000000.0
+      },
+      "constant_fraction": {
+        "median": 0.7363190296676827,
+        "p95": 0.9615094339622642,
+        "p99": 0.9856603773584905
+      },
+      "extreme_fraction": {
+        "median": 0.2181132075471698,
+        "p95": 0.46114532964157595,
+        "p99": 0.4913207547169811
+      }
+    },
+    "S14": {
+      "median": {
+        "median": 511.0,
+        "p95": 520.0,
+        "p99": 525.0
+      },
+      "mad": {
+        "median": 1e-09,
+        "p95": 3.000000001,
+        "p99": 5.000000001
+      },
+      "rms": {
+        "median": 0.6138854501549533,
+        "p95": 25.514809463698096,
+        "p99": 35.13134650513129
+      },
+      "peak_over_mad": {
+        "median": 999999999.9999999,
+        "p95": 44000000000.0,
+        "p99": 171000000000.0
+      },
+      "max_step_over_mad": {
+        "median": 999999999.9999999,
+        "p95": 15999999999.999998,
+        "p99": 61999999999.99999
+      },
+      "constant_fraction": {
+        "median": 0.7961006289308177,
+        "p95": 0.9984905660377359,
+        "p99": 1.0
+      },
+      "extreme_fraction": {
+        "median": 0.04368650168891591,
+        "p95": 0.42537106918239004,
+        "p99": 0.48477941427551
+      }
+    },
+    "S15": {
+      "median": {
+        "median": 422.0,
+        "p95": 487.0,
+        "p99": 487.0
+      },
+      "mad": {
+        "median": 1.000000001,
+        "p95": 1.000000001,
+        "p99": 2.000000001
+      },
+      "rms": {
+        "median": 0.8226110174052766,
+        "p95": 2.673042691897083,
+        "p99": 11.347742079650306
+      },
+      "peak_over_mad": {
+        "median": 14.999999984999999,
+        "p95": 3999999999.9999995,
+        "p99": 9000000000.0
+      },
+      "max_step_over_mad": {
+        "median": 7.999999991999999,
+        "p95": 3000000000.0,
+        "p99": 6000000000.0
+      },
+      "constant_fraction": {
+        "median": 0.4867924528301887,
+        "p95": 0.6971069182389937,
+        "p99": 0.7502213836477986
+      },
+      "extreme_fraction": {
+        "median": 0.0,
+        "p95": 0.4835220125786164,
+        "p99": 0.49660377358490565
+      }
+    },
+    "S16": {
+      "median": {
+        "median": 446.0,
+        "p95": 463.0,
+        "p99": 474.0
+      },
+      "mad": {
+        "median": 6.000000001,
+        "p95": 14.000000001,
+        "p99": 22.000000001
+      },
+      "rms": {
+        "median": 9.054070714625793,
+        "p95": 27.78801496459502,
+        "p99": 176.3908069969435
+      },
+      "peak_over_mad": {
+        "median": 5.145631067911207,
+        "p95": 16.14285714055102,
+        "p99": 52.78666665891682
+      },
+      "max_step_over_mad": {
+        "median": 0.499999999875,
+        "p95": 4.49999999775,
+        "p99": 13.137999999026857
+      },
+      "constant_fraction": {
+        "median": 0.06566037735849056,
+        "p95": 0.15752374130265542,
+        "p99": 0.23698590390798255
+      },
+      "extreme_fraction": {
+        "median": 0.0,
+        "p95": 0.0,
+        "p99": 0.05762012578616328
+      }
+    }
+  },
+  "artifact_proxy_counts_by_station": {
+    "S12": {
+      "step_like": 13573,
+      "plateau_like": 14771,
+      "extreme_like": 13485
+    },
+    "S14": {
+      "step_like": 8977,
+      "plateau_like": 10389,
+      "extreme_like": 8618
+    },
+    "S15": {
+      "step_like": 6918,
+      "plateau_like": 14126,
+      "extreme_like": 6980
+    },
+    "S16": {
+      "step_like": 51,
+      "plateau_like": 397,
+      "extreme_like": 339
+    }
+  },
+  "day_quality_sha256": "f7a03caf3b0f74ba92d4c86fe1924c0ae9bbf5d981459c11ca72292fc285a2e3",
+  "window_manifest_sha256": "4ab8c3a2665e700fafb885ca133f9e325bab09c474a97ae503c17ffafb498474",
+  "warning": "Artifact labels are engineering proxies, not authoritative physical classifications. This frame is development-only and cannot become an untouched test."
+}

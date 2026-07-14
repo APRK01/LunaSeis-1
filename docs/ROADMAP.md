@@ -43,7 +43,11 @@ Phase 1 initial scoping completed on 2026-07-13:
 - reconstructed validation-only 90%-recall thresholds before scoring and ran CNN, logistic, and STA/LTA across every qualified window under frozen merging/matching rules.
 - accepted a negative operational result: 1/6, 1/6, and 0/6 recall with 2,932, 313, and 732 false triggers; all methods retain an excessive 40–98% of evaluated duration.
 - audited station/block concentration and highest-scoring false cases; persistent activation and acquisition artifacts require separate continuous-validation development, not retuning on the consumed frame.
+- froze 56 previously unexposed continuous-development days, verified 224 products/84.84 MB, and quantified severe station-specific plateau/step/extreme-value proxy shift over 57,823 windows.
+- trained robust-level and robust-difference CNN candidates using training-station hard negatives only; selected robust level at equal 0.9115 mean validation-event recall and lower merged validation trigger rate.
+- selected a second untouched 112-day frame with zero prior overlap, verified 448 products/171.07 MB, and froze 157,363 qualified windows/2,651.4 station-hours plus three eligible events before inference.
+- completed frozen test v0.2: robust CNN reduced original-CNN FP/hour from 0.9233 to 0.3195 but remained worse than logistic at 0.1848; every method recalled 0/3 events, so H1 and H6 remain unsupported.
 
-Phase 1 remains active for continuous-validation diagnostics on unconsumed training-station days, artifact-robust model development, exhaustive literature chaining, and release/licensing clarification. The first untouched frame is consumed; final claims remain blocked.
+Phase 1 detection experimentation is complete as a negative study. Both untouched frames are consumed, H1/H6 are unsupported under the tested protocol, and further detector iteration requires an explicitly revised protocol rather than more test-frame tuning. Literature completion, calibration relevance review, paper framing, reproducibility packaging, and release/licensing clarification remain.
 
 Later phases: literature/data audit; reproducible preprocessing; baselines; compact neural models; generalization/calibration; continuous scanning/retention simulation; reproduction audit; paper; public release.

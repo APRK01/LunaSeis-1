@@ -1,0 +1,8 @@
+{
+  "source_plan": "data/manifests/continuous_validation_download_plan_v0.1.json",
+  "verified_product_count": 224,
+  "verified_total_bytes": 84837751,
+  "downloaded_product_count_this_run": 0,
+  "reused_product_count_this_run": 224,
+  "integrity": "exact size and official NASA PDS MD5 verified for every product"
+}

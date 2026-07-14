@@ -42,11 +42,12 @@ def channel_product_names(listing: dict[str,int], channel: str) -> list[str]:
     return pairs[0] if pairs else []
 
 
-def prior_station_days(manifest_root: Path) -> set[tuple[str,int,int]]:
+def prior_station_days(manifest_root: Path, ignored_outputs: set[Path] | None = None) -> set[tuple[str,int,int]]:
     """Collect exposed station-days from committed planning manifests only."""
     days=set()
+    ignored_outputs={path.resolve() for path in (ignored_outputs or set())}
     for path in sorted(manifest_root.glob("*.json")):
-        if path.name.startswith("contiguous_evaluation_"):continue
+        if path.resolve() in ignored_outputs:continue
         try:data=json.loads(path.read_text())
         except (json.JSONDecodeError,UnicodeDecodeError):continue
         stack=[data]
@@ -60,7 +61,7 @@ def prior_station_days(manifest_root: Path) -> set[tuple[str,int,int]]:
                     elif isinstance(value,(dict,list)):stack.append(value)
             elif isinstance(item,list):stack.extend(item)
     for path in sorted(manifest_root.glob("*.csv")):
-        if path.name.startswith("contiguous_evaluation_"):continue
+        if path.resolve() in ignored_outputs:continue
         try:rows=csv.DictReader(path.open(newline=""))
         except UnicodeDecodeError:continue
         for row in rows:
@@ -74,14 +75,14 @@ def prior_station_days(manifest_root: Path) -> set[tuple[str,int,int]]:
     return days
 
 
-def candidate_blocks(station: str, archive_days: dict[int,list[int]], excluded: set[tuple[str,int,int]], length: int) -> list[tuple[str,int,int]]:
+def candidate_blocks(station: str, archive_days: dict[int,list[int]], excluded: set[tuple[str,int,int]], length: int, seed: str = SEED) -> list[tuple[str,int,int]]:
     candidates=[]
     for year,days in sorted(archive_days.items()):
         available=set(days)
         for start in days:
             block=range(start,start+length)
             if all(day in available and (station,year,day) not in excluded for day in block):
-                key=hashlib.sha256(f"{SEED}|{station}|{year}|{start:03d}".encode()).hexdigest()
+                key=hashlib.sha256(f"{seed}|{station}|{year}|{start:03d}".encode()).hexdigest()
                 candidates.append((key,year,start))
     return sorted(candidates)
 
@@ -101,15 +102,16 @@ def main() -> None:
     parser.add_argument("--block-days",type=int,default=14)
     parser.add_argument("--blocks-per-station",type=int,default=2)
     parser.add_argument("--workers",type=int,default=4)
+    parser.add_argument("--seed",default=SEED)
     parser.add_argument("--cache",type=Path,default=Path("data/interim/contiguous_evaluation_listing_cache.json"))
     parser.add_argument("--days-output",type=Path,default=Path("data/manifests/contiguous_evaluation_station_days.csv"))
     parser.add_argument("--plan-output",type=Path,default=Path("data/manifests/contiguous_evaluation_download_plan.json"))
     args=parser.parse_args()
-    excluded=prior_station_days(Path("data/manifests"))
+    excluded=prior_station_days(Path("data/manifests"),{args.days_output,args.plan_output})
     selected=[]
     for station in STATIONS:
         archive={year:directory_numbers(f"{BASE_URL}/{station.lower()}/{year}/",3) for year in directory_numbers(f"{BASE_URL}/{station.lower()}/",4)}
-        blocks=select_nonoverlapping(candidate_blocks(station,archive,excluded,args.block_days),args.blocks_per_station,args.block_days)
+        blocks=select_nonoverlapping(candidate_blocks(station,archive,excluded,args.block_days,args.seed),args.blocks_per_station,args.block_days)
         if len(blocks)!=args.blocks_per_station:raise RuntimeError(f"Could not select {args.blocks_per_station} untouched blocks for {station}")
         for block_number,(year,start) in enumerate(blocks,1):
             for offset in range(args.block_days):selected.append((station,year,start+offset,f"{station}_B{block_number}",offset+1))
@@ -132,7 +134,7 @@ def main() -> None:
         if usable:
             primary=next(channel for channel in ("MHZ","MH1","MH2") if channel in complete_channels)
             for channel in ("ATT",primary):chosen.extend(resolved[channel])
-        row={"station":station,"year":year,"doy":f"{doy:03d}","block_id":block_id,"day_in_block":day_in_block,"selection_seed":SEED,"prior_station_day_overlap":0,"att_and_primary_mh_available":int(usable),"selected_primary_channel":primary if usable else "","selected_bytes":sum(listing[name] for name in chosen)}
+        row={"station":station,"year":year,"doy":f"{doy:03d}","block_id":block_id,"day_in_block":day_in_block,"selection_seed":args.seed,"prior_station_day_overlap":0,"att_and_primary_mh_available":int(usable),"selected_primary_channel":primary if usable else "","selected_bytes":sum(listing[name] for name in chosen)}
         rows.append(row)
         for name in chosen:
             relative=f"data/xa/continuous_waveform/{station.lower()}/{year}/{doy:03d}/{name}"
@@ -147,7 +149,7 @@ def main() -> None:
     for block in sorted({row["block_id"] for row in rows}):
         chosen=[row for row in rows if row["block_id"]==block]
         block_summary.append({"block_id":block,"station":chosen[0]["station"],"year":int(chosen[0]["year"]),"start_doy":int(chosen[0]["doy"]),"end_doy":int(chosen[-1]["doy"]),"selected_days":len(chosen),"complete_days":sum(row["att_and_primary_mh_available"]==1 for row in chosen),"bytes":sum(int(row["selected_bytes"]) for row in chosen)})
-    plan={"status":"planned_not_downloaded","source_bundle":"urn:nasa:pds:apollo_pse::1.0","selection_seed":SEED,"selection":"Two hash-ranked nonoverlapping 14-day blocks per station, selected from official archive days after excluding all station-days exposed by prior committed manifests; no event catalogs, channel quality, or model scores used for selection","prior_station_days_excluded":len(excluded),"station_days_selected":len(rows),"station_days_complete":sum(row["att_and_primary_mh_available"]==1 for row in rows),"station_days_incomplete":sum(row["att_and_primary_mh_available"]==0 for row in rows),"complete_days_by_station":dict(counts),"product_count":len(products),"total_bytes":sum(int(row["bytes"]) for row in products),"total_gib":sum(int(row["bytes"]) for row in products)/1024**3,"block_summaries":block_summary,"station_days_csv_sha256":hashlib.sha256(args.days_output.read_bytes()).hexdigest(),"products":products,"notes":["Selected blocks are never replaced for missing channels.","Catalog event coverage is audited only after selection and cannot alter the frame.","No waveform is downloaded by this planning script."]}
+    plan={"status":"planned_not_downloaded","source_bundle":"urn:nasa:pds:apollo_pse::1.0","selection_seed":args.seed,"selection":f"{args.blocks_per_station} hash-ranked nonoverlapping {args.block_days}-day block(s) per station, selected from official archive days after excluding all station-days exposed by prior manifests; no event catalogs, channel quality, or model scores used for selection","prior_station_days_excluded":len(excluded),"station_days_selected":len(rows),"station_days_complete":sum(row["att_and_primary_mh_available"]==1 for row in rows),"station_days_incomplete":sum(row["att_and_primary_mh_available"]==0 for row in rows),"complete_days_by_station":dict(counts),"product_count":len(products),"total_bytes":sum(int(row["bytes"]) for row in products),"total_gib":sum(int(row["bytes"])/1024**3 for row in products),"block_summaries":block_summary,"station_days_csv_sha256":hashlib.sha256(args.days_output.read_bytes()).hexdigest(),"products":products,"notes":["Selected blocks are never replaced for missing channels.","Catalog event coverage is audited only after selection and cannot alter the frame.","No waveform is downloaded by this planning script."]}
     args.plan_output.write_text(json.dumps(plan,indent=2)+"\n");print(json.dumps({key:value for key,value in plan.items() if key!="products"},indent=2))
 
 
