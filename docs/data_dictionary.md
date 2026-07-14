@@ -72,3 +72,7 @@ Contains authoritative code/grade decoding, full and conservative counts, year/s
 - `contiguous_evaluation_download_plan.json`: exact 448-product paths, URLs, bytes, NASA MD5s, blocks, and selection provenance; planned but not downloaded.
 - `contiguous_evaluation_catalog_audit.csv`: post-selection catalog references, prior fold exposure, and prospective recall eligibility.
 - `results/predictions/contiguous_evaluation_plan_audit.json`: compact overlap, catalog, and eligibility audit with CSV checksum.
+- `contiguous_evaluation_download_receipt.json`: second-pass disk reconciliation for all 448 files and 171,375,344 bytes.
+- `contiguous_evaluation_day_quality.csv`: ATT/MH rates, coverage, full-day gaps, day sensitivity status, passing 600-second windows, and scannable union duration.
+- `contiguous_evaluation_eligible_event_quality.csv`: ATT mapping, event-window gaps, descriptive RMS support, and integrity status for the seven prospective events.
+- `results/predictions/contiguous_evaluation_integrity_summary.json`: frozen window count, union duration, day/event status counts, and artifact hashes; contains no model inference.

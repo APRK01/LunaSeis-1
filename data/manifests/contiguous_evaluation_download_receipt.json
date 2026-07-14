@@ -1,0 +1,8 @@
+{
+  "source_plan": "data/manifests/contiguous_evaluation_download_plan.json",
+  "verified_product_count": 448,
+  "verified_total_bytes": 171375344,
+  "downloaded_product_count_this_run": 0,
+  "reused_product_count_this_run": 448,
+  "integrity": "exact size and official NASA PDS MD5 verified for every product"
+}

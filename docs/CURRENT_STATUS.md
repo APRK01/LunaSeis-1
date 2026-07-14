@@ -4,7 +4,7 @@ Last updated: 2026-07-14 (Asia/Kolkata)
 
 ## State
 
-Phase 0 feasibility is achieved and Phase 1 is active. Positive-waveform QA, independent-background v0.1, and the mixed-result tiny-CNN pilot are complete. Continuous-scanning v0.1 is frozen. An untouched balanced frame of 112 station-days is selected and checksum-planned under Decision 0019, but not downloaded or scored. It contains 2,688 station-hours and seven prospectively recall-eligible candidate events pending waveform QA. Paper claims remain blocked.
+Phase 0 feasibility is achieved and Phase 1 is active. Positive QA, independent-background v0.1, and the mixed-result tiny-CNN pilot are complete. All 448 untouched contiguous-frame products are downloaded and twice size/MD5-verified. Full-day and sliding-window integrity QA freezes 152,986 scan windows spanning 2,591.47 union station-hours and six eligible events. Decision 0020 authorizes inference under frozen rules; no contiguous model score exists yet and paper claims remain blocked.
 
 ## Completed
 
@@ -102,6 +102,15 @@ Phase 0 feasibility is achieved and Phase 1 is active. Positive-waveform QA, ind
 - Audited catalog coverage only after selection: 315 station-specific references to 263 unique catalog events, with seven unified candidates untouched by any prior role in their station fold and pending waveform QA.
 - Excluded 16 prior-fold-exposed candidate occurrences from future untouched event-recall claims and retained the other 292 references for catalog-time false-alarm protection only.
 - Authorized the bounded download under Decision 0019 while keeping model scoring blocked until checksum and full-day integrity QA pass.
+- Downloaded all 448 contiguous-frame products totaling 171,375,344 bytes with exact-size and official NASA-MD5 verification.
+- Reran the downloader disk-only; all 448 products were reused and independently reverified with zero network downloads.
+- Loaded all 112 ATT/MH day pairs and recorded trace coverage, sample rates, gap fractions, longest gaps, and full-day integrity sensitivities.
+- Classified 100 days usable, ten questionable at the 10% sensitivity boundary, and two rejected above the 20% primary full-day gap boundary.
+- Audited all 160,272 frozen 600-second/60-second-stride candidate windows locally; 152,986 pass the 20% ATT-and-MH local gap gate.
+- Froze 9,329,280 seconds (2,591.4667 hours) of merged underlying scannable time as the false-trigger denominator.
+- Audited and visually reviewed all seven untouched candidate windows without loading a model. Six pass integrity; `levent-10063` is rejected for 78.59% waveform gaps and 78.714-second ATT displacement.
+- Preserved descriptive signal evidence without relabeling: one weak post/pre RMS ratio, five without a clear increase, and one unquantifiable rejected window.
+- Authorized continuous inference under Decision 0020 while retaining the small-event-denominator and paper-claim blocks.
 
 ## Files changed
 
@@ -236,8 +245,12 @@ Exact files changed for tiny-CNN pilot v0.1: `.gitignore`, `configs/model/tiny_c
 
 Exact files changed for untouched contiguous evaluation planning: `configs/evaluation/continuous_scanning_v0.1.yaml`, `data/manifests/contiguous_evaluation_station_days.csv`, `data/manifests/contiguous_evaluation_download_plan.json`, `data/manifests/contiguous_evaluation_catalog_audit.csv`, `docs/CURRENT_STATUS.md`, `docs/DECISIONS.md`, `docs/ROADMAP.md`, `docs/data_dictionary.md`, `docs/contiguous_evaluation_plan_v0.1.md`, `docs/decisions/0019-untouched-contiguous-frame-plan.md`, `results/predictions/contiguous_evaluation_plan_audit.json`, `scripts/audit_contiguous_evaluation_plan.py`, `scripts/build_contiguous_evaluation_plan.py`, `tests/test_audit_contiguous_evaluation_plan.py`, and `tests/test_build_contiguous_evaluation_plan.py`.
 
+Exact files changed for contiguous-frame download and integrity QA: `configs/evaluation/continuous_scanning_v0.1.yaml`, `data/manifests/contiguous_evaluation_download_receipt.json`, `data/manifests/contiguous_evaluation_day_quality.csv`, `data/manifests/contiguous_evaluation_eligible_event_quality.csv`, `docs/CURRENT_STATUS.md`, `docs/DECISIONS.md`, `docs/ROADMAP.md`, `docs/data_dictionary.md`, `docs/contiguous_evaluation_integrity_v0.1.md`, `docs/decisions/0020-contiguous-integrity-and-scan-frame.md`, `results/figures/contiguous_evaluation_eligible_events.png`, `results/predictions/contiguous_evaluation_integrity_summary.json`, `scripts/audit_contiguous_evaluation_data.py`, `scripts/download_contiguous_evaluation.py`, `tests/test_audit_contiguous_evaluation_data.py`, and `tests/test_download_contiguous_evaluation.py`. Raw products remain ignored.
+
 ## Commands and verification
 
+- Ran the checksum-gated contiguous downloader twice, with the second run reusing and revalidating all 448 files; loaded/audited all 112 ATT/MH pairs; enumerated 160,272 frozen scan windows; computed local gap gates and merged union duration; audited and plotted seven eligible event windows without model inference.
+- Visually inspected the full-resolution seven-event raw-MH figure, reviewed the rejected candidate metrics, and independently asserted receipt, day, window, duration, event, and hash totals.
 - Ran the fixed-seed archive-block selector, inspected 112 official PDS day listings, resolved actual MiniSEED location codes from listings, attached official MD5s, reran selection for reproducibility, and ran the post-selection catalog/exposure audit without model scores.
 - Verified exact product/byte/day/station/block totals, zero prior overlap, 112/112 channel completeness, manifest hashes, seven strict untouched candidate IDs, 52 GiB free storage, YAML parsing, script compilation, full regression tests, and `git diff --check`.
 - Installed PyTorch into `.venv`, regenerated the exact dependency lock, ran the 512-bin failed ablation and native-cadence pilot twice deterministically, ran shortcut counterfactual inference, inspected score distributions and learning curves, measured efficiency, and visually inspected the final comparison figure.
@@ -326,6 +339,7 @@ Exact files changed for untouched contiguous evaluation planning: `configs/evalu
 - Adopt independent-background v0.1, retire positive-conditioned metrics from decisions, and permit only pilot neural training while final claims remain blocked.
 - Retain the tiny-CNN pilot as mixed/negative evidence, preserve the failed averaging ablation, and freeze continuous-scanning v0.1 before selecting the untouched contiguous evaluation frame.
 - Accept the fixed 112-day frame without replacement, authorize only its checksum-gated 163.4 MiB download, and keep model scoring blocked until full-day integrity QA.
+- Freeze 152,986 local-gap-qualified windows and 2,591.47 union hours; exclude one severe-gap event and authorize continuous inference for six integrity-eligible events.
 
 ## Unresolved uncertainties
 
@@ -351,8 +365,9 @@ Exact files changed for untouched contiguous evaluation planning: `configs/evalu
 - Local CPU latency and memory measurements are Apple-Silicon microbenchmarks, not portable deployment measurements.
 - The frozen scanning protocol has not yet been executed on a newly selected untouched contiguous-day frame.
 - The untouched frame has only seven prospectively eligible candidate events before waveform QA, so event recall cannot be a stable headline estimate.
-- The 112 selected days are archive-complete but their actual gap/ATT integrity is unknown until download.
+- Only six untouched catalog events pass integrity, and five lack a clear raw RMS increase; event recall will be high-uncertainty and descriptive.
+- Full-day status uses a 10% sensitivity boundary while the primary per-window exclusion remains the established 20% gap gate.
 
 ## Exact next task
 
-Download and exact-size/NASA-MD5 verify all 448 contiguous-frame products, then audit full-day ATT/MH gaps and eligible-event visibility without running any model inference.
+Run frozen tiny-CNN, logistic, and STA/LTA inference over the 152,986 qualified windows; merge triggers and report false triggers per union hour/day plus exact six-event recall without tuning on this frame.

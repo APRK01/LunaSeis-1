@@ -31,5 +31,9 @@ final_gate:
   selected_station_days: data/manifests/contiguous_evaluation_station_days.csv
   download_plan: data/manifests/contiguous_evaluation_download_plan.json
   catalog_audit: data/manifests/contiguous_evaluation_catalog_audit.csv
-  selection_status: frozen_planned_not_downloaded
-  model_scoring: blocked_pending_download_and_day_integrity_QA
+  selection_status: frozen_downloaded_md5_verified_and_integrity_audited
+  verified_product_count: 448
+  integrity_qualified_window_count: 152986
+  integrity_qualified_union_seconds: 9329280
+  integrity_eligible_event_count: 6
+  model_scoring: authorized_under_frozen_protocol
