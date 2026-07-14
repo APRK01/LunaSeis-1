@@ -11,7 +11,8 @@
 - [ ] Recreate environment on clean Linux/Colab
 - [ ] Execute the Colab notebook top-to-bottom
 - [ ] Replace repository URL in release metadata after the user chooses a GitHub account
-- [ ] Complete final literature/novelty audit
-- [ ] Finalize manuscript and supplementary tables
+- [x] Complete direct-predecessor literature and public-claim audit
+- [x] Draft manuscript and machine-readable headline tables
+- [ ] Complete coauthor/mentor review and journal-format manuscript revision
 - [ ] Obtain written redistribution clarification if publishing labeled windows
 - [ ] Create GitHub/Hugging Face/Zenodo releases only with explicit user authorization

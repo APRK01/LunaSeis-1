@@ -4,7 +4,7 @@ Last updated: 2026-07-14 (Asia/Kolkata)
 
 ## State
 
-Phase 0 feasibility and the planned binary-detection experiment cycle are complete. Both frozen continuous tests remain negative and consumed. Subsequent development-only comparison selected a 2,761-parameter depthwise CNN at 0.9115 mean validation-event recall and 0.2106 merged triggers/hour, but a full-day S15 smoke scan persistently activated on all 1,418 scored windows. The model is packaged as a functioning research/software prototype authored by Advaith Praveen (APRK), not an operational detector. GitHub-facing documentation, cards, manuscript draft, tables, citation metadata, notebook, checkpoints, and inference CLI now exist; clean Linux/Colab reproduction, literature/claim freeze, and explicit publication remain open.
+Phase 0 feasibility and the planned binary-detection experiment cycle are complete. Both frozen continuous tests remain negative and consumed. Subsequent development-only comparison selected a 2,761-parameter depthwise CNN at 0.9115 mean validation-event recall and 0.2106 merged triggers/hour, but a full-day S15 smoke scan persistently activated on all 1,418 scored windows. The model is packaged as a functioning research/software prototype authored by Advaith Praveen (APRK), not an operational detector. GitHub-facing documentation, cards, manuscript draft, tables, citation metadata, notebook, checkpoints, inference CLI, and a literature-backed public-claims boundary now exist; clean Linux/Colab reproduction and explicit publication remain open.
 
 ## Completed
 
@@ -279,7 +279,12 @@ Exact files changed for artifact-robust development and test v0.2: `configs/mode
 
 Exact files changed for the release-prototype cycle: `.github/workflows/tests.yml`, `.gitignore`, `AUTHORS.md`, `CONTRIBUTING.md`, `README.md`, `LICENSE`, `CITATION.cff`, `pyproject.toml`, `configs/model/depthwise_cnn_v0.1.yaml`, `lunaseis/__init__.py`, `lunaseis/model.py`, `lunaseis/inference.py`, `lunaseis/cli.py`, `scripts/audit_missed_continuous_events.py`, `scripts/train_compact_model_suite.py`, `scripts/predict_lunaseis.py`, `models/checkpoints/compact_model_suite_v0.1/*`, `results/predictions/missed_continuous_event_audit.json`, `results/predictions/compact_model_suite_v0.1.json`, `docs/MODEL_CARD.md`, `docs/DATASET_CARD.md`, `docs/REPRODUCIBILITY.md`, `docs/RELEASE_CHECKLIST.md`, `docs/decisions/0024-release-prototype-not-operational-claim.md`, `docs/decisions/0025-depthwise-release-prototype.md`, `paper/manuscript.md`, `paper/tables/continuous_tests.csv`, `paper/tables/development_models.csv`, `paper/tables/event_inventory.csv`, `output/jupyter-notebook/lunaseis_inference_colab.ipynb`, `tests/test_lunaseis_inference.py`, and permanent context documents.
 
+Exact files changed for the release-claims freeze: `README.md`, `paper/manuscript.md`, `literature/state_of_the_field.md`, `docs/RELEASE_CLAIMS.md`, `docs/RELEASE_CHECKLIST.md`, `docs/data_dictionary.md`, `docs/DECISIONS.md`, `docs/decisions/0026-release-claims-boundary.md`, and `docs/CURRENT_STATUS.md`.
+
 ## Commands and verification
+
+- Rechecked the direct Apollo ML predecessors from their publisher/DOI records: Knapmeyer-Endrun and Hammer (2015), Civilini et al. (2021), Onodera (2024), and Al-Qadasi and Bin Waheed (2026). Froze supported/prohibited public wording in `docs/RELEASE_CLAIMS.md` and added manuscript references without making an absolute novelty claim.
+- Reran all 56 unit tests, compiled `lunaseis`, scripts, and tests, parsed every YAML config plus `CITATION.cff` with the system Ruby YAML parser, and ran `git diff --check`; all passed. The project virtual environment does not include the optional PyYAML module, so the equivalent Python YAML check was not used.
 
 - Generalized contiguous selection/audit scripts to named frames, then asserted that validation and test v0.2 have zero overlap with every earlier manifest.
 - Ran checksum-gated downloads for all 224 validation and 448 test-v0.2 products; exact byte totals reconciled to 84,837,751 and 171,072,240.
@@ -426,4 +431,4 @@ Exact files changed for the release-prototype cycle: `.github/workflows/tests.ym
 
 ## Exact next task
 
-Recreate the release candidate in a clean Linux/Colab environment, then freeze literature-backed claims and manuscript scope before any GitHub/Hugging Face/Zenodo publication.
+Recreate the release candidate and execute its notebook in a clean Linux/Colab environment before any GitHub/Hugging Face/Zenodo publication.

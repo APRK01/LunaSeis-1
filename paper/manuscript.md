@@ -13,6 +13,8 @@ Apollo seismic recordings remain a uniquely important record of lunar interior a
 
 LunaSeis-1 asks whether a lightweight raw-waveform model can generalize to an excluded Apollo station while maintaining useful continuous false-alarm behavior. The study prioritizes operational falsification over balanced-window accuracy. Its contribution is the combined reproducible data pipeline, strict leakage controls, continuous scanning, artifact diagnosis, and preservation of negative evidence.
 
+This is not the first application of automated learning to Apollo seismic detection. Knapmeyer-Endrun and Hammer (2015) used hidden Markov models for Apollo 16 event detection and classification. Civilini et al. (2021) applied CNNs trained on a terrestrial station to Apollo PSE and LSPE data and motivated telemetry prioritization. Al-Qadasi and Bin Waheed (2026) subsequently evaluated compact Fourier Neural Operators on raw waveforms and spectrograms. Onodera (2024) also demonstrated that short-period archive analysis materially expands the known shallow-moonquake inventory. LunaSeis-1 therefore does not claim architectural priority. Its study focus is the combined cross-station, family-aware, continuous operational stress test and the transparent preservation of its negative outcome.
+
 ## 2. Data
 
 Waveforms come from NASA PDS bundle `urn:nasa:pds:apollo_pse::1.0`. Labels originate from `urn:nasa:pds:apollo_seismic_event_catalog::1.0` and the corrected Onodera shallow-moonquake tables. The unified candidate registry contains 609 deep moonquakes, 623 natural impacts, 74 shallow moonquakes, and eight artificial impacts.
@@ -67,3 +69,11 @@ LunaSeis-1 does not demonstrate an operational moonquake detector. It demonstrat
 ## Data and code availability
 
 Code, manifests, small checkpoints, configurations, predictions, and derived figures are prepared for public release. Raw NASA files are reconstructed from official PDS sources and are not mirrored. Release URLs and archival DOI will be inserted only after explicit publication authorization.
+
+## References
+
+- Al-Qadasi, B., & Bin Waheed, U. (2026). Fourier Neural Operator for Moonquake Detection. *Earth and Space Science*, 13, e2025EA004792. https://doi.org/10.1029/2025EA004792
+- Civilini, F., Weber, R. C., Jiang, Z., Phillips, D., & Pan, W. D. (2021). Detecting moonquakes using convolutional neural networks, a non-local training set, and transfer learning. *Geophysical Journal International*, 225(3), 2120–2134. https://doi.org/10.1093/gji/ggab083
+- Knapmeyer-Endrun, B., & Hammer, C. (2015). Identification of new events in Apollo 16 lunar seismic data by Hidden Markov Model-based event detection and classification. *Journal of Geophysical Research: Planets*. https://doi.org/10.1002/2015JE004862
+- Nunn, C., Nakamura, Y., Kedar, S., & Panning, M. P. (2022). A New Archive of Apollo's Lunar Seismic Data. *The Planetary Science Journal*. https://doi.org/10.3847/PSJ/ac87af
+- Onodera, K. (2024). New Views of Lunar Seismicity Brought by Analysis of Newly Discovered Moonquakes in Apollo Short-Period Seismic Data. *Journal of Geophysical Research: Planets*. https://doi.org/10.1029/2023JE008153

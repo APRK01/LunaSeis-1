@@ -54,6 +54,8 @@ The public interface automatically loads the checkpoint trained without the requ
 
 The newer depthwise model was selected only after both frames were consumed and therefore is **not** retroactively evaluated or claimed to succeed on them.
 
+See [release claims](docs/RELEASE_CLAIMS.md) for the exact evidence boundary. LunaSeis-1 does not claim to be the first lunar ML detector, the first compact raw-waveform model, or an operational detector.
+
 ## Quick start
 
 ```bash

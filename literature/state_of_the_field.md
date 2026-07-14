@@ -1,8 +1,8 @@
 # Initial state of the field
 
-Last updated: 2026-07-13
+Last updated: 2026-07-14
 
-Status: initial systematic scoping synthesis. Novelty is not frozen.
+Status: release-candidate claim audit complete for the direct Apollo ML predecessors. This is not an exhaustive systematic review of all planetary or terrestrial detector literature.
 
 ## What is already established
 
@@ -31,7 +31,7 @@ The strongest candidate contribution is a rigorously combined evaluation/reprodu
 - an authoritative PDS4/ATT-aware, provenance-rich construction pipeline;
 - explicit artifact, gap, station, timing, and catalog-negative ambiguity controls.
 
-Whether this exact combination is novel remains a candidate claim. The initial search did not find a prior Apollo study combining strict family/event-disjoint PSE leave-one-station-out testing with calibration, abstention, operational false-alarm rates, and retained-duration simulation. Absence from this first pass is not proof.
+The reviewed direct Apollo predecessors did not reveal a study combining strict family/event-disjoint PSE leave-one-station-out testing, independently selected background days, prospectively frozen continuous scans, operational false-trigger rates, and retained-duration reporting. This supports the study positioning but not an absolute first/novelty claim; absence from the reviewed set is not proof that no such work exists.
 
 ## Implications for experiments
 
@@ -52,4 +52,4 @@ Whether this exact combination is novel remains a candidate claim. The initial s
 - Event-triggered sensing/retention literature and realistic telemetry accounting.
 - Access and schema audit for the Onodera 2024 updated catalog.
 
-No final novelty statement should be written until these gaps are closed.
+Public wording is governed by `docs/RELEASE_CLAIMS.md`. No absolute priority or state-of-the-art claim is authorized.
