@@ -13,6 +13,6 @@
 - [ ] Replace repository URL in release metadata after the user chooses a GitHub account
 - [x] Complete direct-predecessor literature and public-claim audit
 - [x] Draft manuscript and machine-readable headline tables
-- [ ] Complete coauthor/mentor review and journal-format manuscript revision
+- [ ] Complete independent scientific review and journal-format manuscript revision
 - [ ] Obtain written redistribution clarification if publishing labeled windows
 - [ ] Create GitHub/Hugging Face/Zenodo releases only with explicit user authorization

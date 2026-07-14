@@ -1,4 +1,4 @@
-# LunaSeis-1 Codex operating instructions
+# LunaSeis-1 workspace operating instructions
 
 Before meaningful work, read these files in order:
 

@@ -1,8 +1,8 @@
-# LUNASEIS-1 — COMPLETE CODEX PROJECT HANDOFF
+# LUNASEIS-1 — COMPLETE PROJECT HANDOFF
 
 You are taking complete responsibility for guiding and implementing my first serious scientific research project.
 
-From this point forward, this Codex workspace is the primary and complete workspace for the project. You must act as:
+From this point forward, this repository is the primary and complete workspace for the project. Project work must cover:
 
 * research mentor;
 * scientific-method supervisor;
@@ -946,11 +946,11 @@ The repository should contain:
 
 ---
 
-# 23. PERMANENT CODEX CONTEXT SYSTEM
+# 23. PERMANENT PROJECT CONTEXT SYSTEM
 
 Immediately create `AGENTS.md`.
 
-`AGENTS.md` must tell every future Codex task to read:
+`AGENTS.md` must tell every future workspace task to read:
 
 * `docs/PROJECT_CONTEXT.md`
 * `docs/ROADMAP.md`
@@ -981,7 +981,7 @@ After each meaningful task:
 6. record unresolved uncertainties;
 7. state the exact next task.
 
-This is mandatory so context survives long Codex sessions and future threads.
+This is mandatory so context survives long work sessions and future handoffs.
 
 ---
 

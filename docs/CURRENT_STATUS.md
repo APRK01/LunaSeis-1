@@ -283,7 +283,11 @@ Exact files changed for the release-claims freeze: `README.md`, `paper/manuscrip
 
 Exact files changed for the user-reported portability checkpoint: `docs/RELEASE_CHECKLIST.md` and `docs/CURRENT_STATUS.md`.
 
+Exact files changed for public authorship normalization: `AGENTS.md`, `AUTHORS.md`, `docs/PROJECT_CONTEXT.md`, `docs/RELEASE_CHECKLIST.md`, and `docs/CURRENT_STATUS.md`.
+
 ## Commands and verification
+
+- Audited tracked text for tool-brand, automated-assistance, and shared-authorship wording; normalized repository context headings/instructions, changed the review checklist to independent scientific review, and confirmed public metadata consistently names Advaith Praveen (APRK) as the sole project author. Scientific source citations remain intact.
 
 - Recorded the user's 2026-07-14 report that Linux reproduction and the Google Colab notebook succeeded. No distribution, package-version transcript, Colab output artifact, or independent rerun was provided, so the permanent record preserves that evidence boundary.
 
