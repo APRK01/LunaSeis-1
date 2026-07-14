@@ -20,4 +20,4 @@
 - [x] Obtain explicit user authorization for the public GitHub release
 - [x] Publish `archeumstudios/LunaSeis-1`, create release `v0.1.0`, and verify the `APRK01` fork/contributor attribution
 - [x] Enable `archeumstudios/LunaSeis-1` in Zenodo GitHub integration
-- [ ] Create v0.1.1 and confirm Zenodo DOI ingestion
+- [x] Create v0.1.1 and confirm Zenodo DOI `10.5281/zenodo.21361572`

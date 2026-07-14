@@ -8,6 +8,7 @@ authors:
 version: 0.1.1
 date-released: 2026-07-14
 license: MIT
+doi: 10.5281/zenodo.21361572
 url: "https://github.com/archeumstudios/LunaSeis-1"
 repository-code: "https://github.com/archeumstudios/LunaSeis-1"
 abstract: "Reproducible lightweight machine-learning models, evaluation protocols, and negative continuous-scanning evidence for Apollo Passive Seismic Experiment waveforms."

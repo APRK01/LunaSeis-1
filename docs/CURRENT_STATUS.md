@@ -4,7 +4,7 @@ Last updated: 2026-07-14 (Asia/Kolkata)
 
 ## State
 
-Phase 0 feasibility and the complete binary-detection experiment cycle are finished. Three prospectively frozen continuous frames are consumed and negative. The final lower-confidence Grade-C challenge contained 63 previously unexposed physical impacts over 1,505.35 station-hours; the frozen 2,761-parameter depthwise CNN recovered 12/63, produced 1,306 false triggers (0.868/hour), and retained 75.38% of the stream. Across all 6,748.22 frozen station-hours, the project does not establish an operational detector. It is packaged as a functioning negative-result research/software prototype authored by Advaith Praveen (APRK), with GitHub documentation, model/data cards, a six-page visually audited preprint PDF, vector/300-DPI figures, tables, citation metadata, notebook, checkpoints, inference CLI, copyright separation, and a literature-backed public-claims boundary. An internal adversarial pre-submission review passed after major revision; this is not represented as independent peer review. On 2026-07-14, the user reported successful Linux and Google Colab reproduction; exact environment versions and execution transcripts were not independently archived. Public release v0.1.0 is live at `https://github.com/archeumstudios/LunaSeis-1`; GitHub verifies `APRK01` as the contributor and `https://github.com/APRK01/LunaSeis-1` as its public fork. Hugging Face and archival DOI mirrors are optional later tasks.
+Phase 0 feasibility and the complete binary-detection experiment cycle are finished. Three prospectively frozen continuous frames are consumed and negative. The final lower-confidence Grade-C challenge contained 63 previously unexposed physical impacts over 1,505.35 station-hours; the frozen 2,761-parameter depthwise CNN recovered 12/63, produced 1,306 false triggers (0.868/hour), and retained 75.38% of the stream. Across all 6,748.22 frozen station-hours, the project does not establish an operational detector. It is packaged as a functioning negative-result research/software prototype authored by Advaith Praveen (APRK), with GitHub documentation, model/data cards, a six-page visually audited research paper, vector/300-DPI figures, tables, citation metadata, notebook, checkpoints, inference CLI, copyright separation, and a literature-backed public-claims boundary. An internal adversarial pre-submission review passed after major revision; this is not represented as independent peer review. On 2026-07-14, the user reported successful Linux and Google Colab reproduction; exact environment versions and execution transcripts were not independently archived. Public release v0.1.1 is live at `https://github.com/archeumstudios/LunaSeis-1`; GitHub verifies `APRK01` as the contributor and public fork. Zenodo permanently archives v0.1.1 at DOI `10.5281/zenodo.21361572`.
 
 ## Completed
 
@@ -473,13 +473,15 @@ Commands/tests: regenerated and asserted headline evidence from all three frozen
 
 ## Exact next task
 
-Publish GitHub release v0.1.1, confirm Zenodo ingestion, and record the assigned DOI.
+No required release task remains; preserve v0.1.1 and its DOI as the completed public research release.
 
 ## Zenodo archival preparation
 
 The user supplied visual confirmation that the Zenodo GitHub integration is ON for `archeumstudios/LunaSeis-1`. Version metadata was advanced to v0.1.1 because Zenodo archives releases created after repository enablement. Files changed: `pyproject.toml`, `CITATION.cff`, `README.md`, `RELEASE_NOTES.md`, `scripts/build_manuscript_pdf.py`, `output/pdf/LunaSeis-1_Research_Paper.pdf`, `paper/figures/research_paper_preview.png`, `release/SHA256SUMS`, `docs/RELEASE_CHECKLIST.md`, and `docs/CURRENT_STATUS.md`.
 
 Verification: 60 tests passed; frozen manuscript evidence recomputed; all release checksums passed; the six-page paper and cover were rebuilt with v0.1.1 metadata; `git diff --check` passed. No model, threshold, evaluation result, or source-data artifact changed.
+
+Zenodo result: GitHub release v0.1.1 was created after integration enablement. Zenodo ingested it as record `21361572`, title `LunaSeis-1: Lightweight Apollo Lunar-Seismic Detection Research Prototype`, version `v0.1.1`, DOI `10.5281/zenodo.21361572`. The DOI was added to README, citation metadata, release notes, and the paper's availability statement.
 
 ## Research-paper visibility update
 

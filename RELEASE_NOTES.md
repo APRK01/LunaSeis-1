@@ -2,6 +2,8 @@
 
 Public archival release by Advaith Praveen (APRK), published under Archeum Studios.
 
+Permanent archive: https://doi.org/10.5281/zenodo.21361572
+
 ## Included
 
 - A 2,761-parameter depthwise-separable 1D CNN with one leave-one-station-out checkpoint for each Apollo PSE station S12, S14, S15, and S16.
@@ -9,7 +11,7 @@ Public archival release by Advaith Praveen (APRK), published under Archeum Studi
 - Checksum-backed source reconstruction, ATT/gap provenance, leakage-controlled manifests, and reproducible protocols.
 - Three prospectively frozen continuous evaluations totaling 6,748.22 station-hours.
 - Prominently linked six-page research paper, publication figures, statistical tables, model card, dataset card, and exact release checksums.
-- Metadata prepared for permanent Zenodo archival and DOI assignment.
+- Permanent Zenodo archival with DOI `10.5281/zenodo.21361572`.
 
 ## Evidence boundary
 

@@ -1,5 +1,7 @@
 # LunaSeis-1
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21361572.svg)](https://doi.org/10.5281/zenodo.21361572)
+
 **A reproducible lightweight ML research prototype for Apollo lunar-seismic waveforms.**
 
 Created by **Advaith Praveen (APRK)** under Archeum Studios.
@@ -13,6 +15,8 @@ The honest answer from the present study is: **not yet operationally**. The sele
 ### *LunaSeis-1: When Balanced Apollo Seismic Detection Fails Under Cross-Station Continuous Scanning*
 
 **Author:** Advaith Praveen (APRK) · **Publisher:** Archeum Studios · **Version:** 0.1.1
+
+**Permanent archive:** [doi:10.5281/zenodo.21361572](https://doi.org/10.5281/zenodo.21361572)
 
 [**Read the research paper on GitHub**](output/pdf/LunaSeis-1_Research_Paper.pdf) · [**Download the PDF**](https://github.com/archeumstudios/LunaSeis-1/raw/main/output/pdf/LunaSeis-1_Research_Paper.pdf) · [**View the manuscript source**](paper/manuscript.md)
 

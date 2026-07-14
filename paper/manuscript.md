@@ -106,7 +106,7 @@ LunaSeis-1 does not demonstrate an operational moonquake detector. Across three 
 
 ## Data and code availability
 
-Code, manifests, small checkpoints, configurations, predictions, and derived figures are publicly available at https://github.com/archeumstudios/LunaSeis-1. Raw NASA files are reconstructed from official PDS sources and are not mirrored. An archival DOI may be added in a later repository release.
+Code, manifests, small checkpoints, configurations, predictions, and derived figures are publicly available at https://github.com/archeumstudios/LunaSeis-1 and permanently archived at https://doi.org/10.5281/zenodo.21361572. Raw NASA files are reconstructed from official PDS sources and are not mirrored.
 
 ## Reproducibility, ethics, and competing interests
 
